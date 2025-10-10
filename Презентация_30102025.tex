@@ -1,0 +1,1470 @@
+\documentclass[pdflatex,compress,8pt,
+	xcolor={dvipsnames,dvipsnames,svgnames,x11names,table},
+	hyperref={colorlinks = true, breaklinks = true, urlcolor = NavyBlue, linkcolor=white, breaklinks = true}]{beamer}
+\usetheme{AnnArbor}
+\graphicspath{{figures/}} % path to folder with Figures
+
+\usepackage[english, russian]{babel}
+\usepackage{subfig}
+\usepackage{fancyhdr}
+\usepackage{metalogo}
+\usepackage[super]{nth}
+\usepackage[font={tiny,it}]{caption} % шрифт подписей к картинкам
+	\setbeamertemplate{caption}[numbered]
+\usepackage{graphicx}
+\usepackage{graphics}
+%\usepackage{textcomp}  % numero symbol
+\usepackage{gensymb} % degree symbol
+%%%%%%%% цветная таблица: начало
+\usepackage{booktabs} 
+\usepackage{tabularx}
+\usepackage{array,etoolbox}
+\usepackage{boldline}
+\usepackage{colortbl} %% цветная таблица
+\setlength{\arrayrulewidth}{0.3mm}
+%%%%%% нумерация внутри таблицы %%%
+\preto\tabular{\setcounter{magicrownumbers}{0}}
+\newcounter{magicrownumbers}
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+\usepackage{longtable}
+%%%%%%%%  цветная таблица: конец
+\usepackage{wrapfig}
+\usepackage{csquotes}
+\usepackage{multirow}
+\usepackage{gensymb} % degree symbol
+\usepackage{pifont}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+% ----------------------------------------------------------------------------
+% *** START BIBLIOGRAPHY <<<
+% ----------------------------------------------------------------------------
+\usepackage[
+	backend=biber, 
+%	style=authortitle,
+	style = numeric,
+%	style=ieee,
+%	style=nature,
+%	style=science,
+%	style=apa,
+%	style=mla,
+%	style=phys, 
+	maxbibnames=99,
+%	citestyle=authoryear,
+	citestyle=numeric,
+	giveninits=true,
+	isbn=true,
+	url=true,
+	natbib=true,
+	sorting=ndymdt,
+	bibencoding=utf8,
+	useprefix=false,
+	language=auto, 
+	autolang=other,
+%	backref=true,
+	backref=false,
+	backrefstyle=none,
+	indexing=cite,
+]{biblatex}
+\DeclareSortingTemplate{ndymdt}{
+  \sort{
+    \field{presort}
+  }
+  \sort[final]{
+    \field{sortkey}
+  }
+  \sort{
+    \field{sortname}
+    \field{author}
+    \field{editor}
+    \field{translator}
+    \field{sorttitle}
+    \field{title}
+  }
+  \sort[direction=descending]{
+    \field{sortyear}
+    \field{year}
+    \literal{9999}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=2,padchar=0]{month}
+    \literal{99}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=2,padchar=0]{day}
+    \literal{99}
+  }
+  \sort{
+    \field{sorttitle}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=4,padchar=0]{volume}
+    \literal{9999}
+  }
+}
+
+\addbibresource{Africa_Present.bib}
+\renewcommand*{\bibfont}{\scriptsize} %\footnotesize
+
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+% ----------------------------------------------------------------------------
+% *** END BIBLIOGRAPHY <<<
+% ----------------------------------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Представление темы диссертации: \\
+Автоматизированное картографирование ландшафтов Африки: \\
+разработка скриптовых методов обработки ДДЗ для выявления динамики почвенно-растительного покрова}
+\author{Леменкова П. А.}
+         \date{30 октября, 2025}
+
+\begin{document}
+
+\begin{frame}
+           \titlepage
+\end{frame}
+
+%\section*{Outline}
+   %     \begin{frame}
+      %     \tableofcontents
+         %\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{Введение}
+\begin{frame}\frametitle{Введение}
+
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\vspace{2em}
+\begin{itemize}
+        	\item \textcolor{red}{Гегорафическая специфика}: масштаб (2-й по площади материк после Евразии), контрастные климатические зоны; континент, протянувшийся от северного субтропического климатического пояса до южного субтропического $=>$ воздействие на почвенно-растительный покров
+	\item \textcolor{red}{Экологические проблемы Африки:}
+		\begin{itemize}\small
+			\item \textcolor{ProcessBlue}{Опустынивание (север)}
+			\item \textcolor{ProcessBlue}{Изменение климата, засухи}
+			\item \textcolor{ProcessBlue}{Нерациональное землепользование, деградация земель (юг)}
+			\item \textcolor{ProcessBlue}{Вырубка тропических лесов (центр)}
+			\item \textcolor{ProcessBlue}{Утрата биоразнообразия}
+			\item \textcolor{ProcessBlue}{Загрязнения воздуха, воды и почвы} 
+		\end{itemize}
+	\item \textcolor{red}{Картографические задачи}: Разработка методов автоматизированного дешифрирования данных ДЗЗ для обработки большого объема спутниковых снимков
+\end{itemize}	
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2ex}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.5cm]{Fig_02.jpg}
+\end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Картографические материалы для экологического мониторинга Африки}
+
+\begin{exampleblock}{Данные дистанционного зондирования Земли (ДЗЗ)}
+\begin{itemize}	
+	\item \textcolor{red}{Возможности}: Технический прогресс в отрасли получение спутниковых данных о Земле и ГИС  обеспечил доступ к географическим данным в большом объеме для мониторинга Земли в континентальном масштабе (Африка)
+	\item \textcolor{red}{Разнообразие}: космические снимки, цифровые растровые и векторные наборы карт, цифровые данные (таблицы -- численные измерения)
+	\item \textcolor{red}{Доступ}: Репозитории, доступные онлайн, позволяют получать доступ к открытым наборам данных для изучения экологических процессов 
+	\item \textcolor{red}{Масшаб}: Пространственно-временной охват данных позволяет сопоставлять карты для выявления изменений в почвенно-растительном покрове по актуальным снимкам ДЗ.
+	\item \textcolor{red}{Покрытие}: Данные ДЗЗ предоставляют информацию о пространственных изменениях в почвенно-растительном покрове ландшафтов на локальном, региональном и глобальном масштабах, например: оценка риска, цунами, вызванные муссонами, изменения ландшафтов, а также связанные с геологическими рисками (напр., район Восточно-Африканского разлом, оползни).
+	\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Цели и задачи диссертации}
+ 
+\begin{alertblock}{Разработка автоматизированных методов обработки данных ДЗЗ для комплексного экологического картографирования Африки}
+\begin{itemize}
+	\item \textcolor{red}{Экологический анализ}: Анализ изменений в почвенно-растительном покрове ландшафтов посредством быстрой и автоматизированной обработки данных ДЗЗ
+	\item \textcolor{red}{Автоматизация}: Разработка скриптов для автоматизации рабочего процесса ГИС для обработки геоданных с помощью синтаксиса языка командной оболочки 
+	\item \textcolor{red}{Технологии ПО}: Generic Mapping Tools (GMT), GRASS GIS; для отдельных задач -- библиотеки языков программирования (Python и R) с помощью скриптов оболочки.
+\end{itemize}
+\end{alertblock}
+
+\begin{exampleblock}{Актуальность}
+\begin{itemize}
+        	\item Использование скриптовых алгоритмов для обработки данных ДЗЗ (спутниковых снимков,  Landsat, Sentinel) важно для автоматизированного извлечения экологической информации с целью картографирования изменения почвенно-растительного покрова 
+	\item Специфика - неоднородные ландшафты Африки и контрастные климатические условия континента $=>$   моделирование воздействия климатических факторов на почвенно-растительного покров
+\end{itemize}
+\end{exampleblock}
+	
+\begin{alertblock}{Практическая значимость}
+\begin{itemize}
+	\item В данном исследовании используются алгоритмы GRASS GIS и GMT, имеющие скриптовый синтаксис, позволяющий эффективно работать с геоданными.
+\end{itemize}
+\end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Предлагаемые способы решения поставленных задач}
+ \begin{exampleblock}{Машинное обучение (МО) для обработки больших данных о Земле}
+\begin{itemize}
+	\item \textcolor{blue}{Проблема}: Извлечение информации из спутниковых данных о Земле в больших масштабах требует передовых технических инструментов, $=>$ необходимо использовать алгоритмы МО/ГО и скриптовые подходы к обработке данных. 
+	\item \textcolor{red}{Парадигма}: МО и скрипты представляют собой передовые методы анализа данных о Земле, которые существенно автоматизируют обработку данных, моделирование, картографирование и визуализацию.
+	\item \textcolor{red}{Иерархия}: МО -- раздел искусственного интеллекта (ИИ), применяемый в ГИС (напр., модули GRASS GIS, плагины для ГИС на Python, - программы-модули, расширяющие функционал обработки ДЗЗ), \emph{обучается на основе алгоритмов обучения и извлекает информацию путем автоматизированной обработки данных ДЗЗ}. 
+	\item \textcolor{red}{Применение МО в ГИС}: Выявление пространственно-временных изменений почвенно-растительного покрова для моделирования воздействия климатических факторов (температура, осадконакопление) на ландшафты
+	\item \textcolor{red}{Преимущества МО}: автоматизация рутинных задач в картографии, выявление скрытых закономерностей и корреляций в больших объемах данных, улучшение точности прогнозирования возможной динамики ландшафтов, оптимизация процессов (напр. классификация снимков), повышение точности дешифрирования и ускорение обработки данных ДЗЗ
+\end{itemize}
+\end{exampleblock} 
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{AF}
+\begin{frame}\frametitle{Research Highlights: Variability of African landscapes}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\vspace{2em}
+\begin{itemize}
+	\item \textcolor{red}{Complexity}: variability of regional geographic setting on the African continent 
+	\item \textcolor{red}{Scale}: Handling multi-source spatial data for local, regional and continental scales
+	\item \textcolor{red}{Data-driven research}: Variety of RS data (Landsat TM/ETM+ OLI/TIRS, Sentinel-2A, SPOT), weather data as time series, climate forecasts, ecological monitoring, seismic observations (hazard assessment).
+	\item \textcolor{red}{Methods}: Processing spatial data by advanced tools and methods (scripts, programming algorithms)
+\end{itemize}	
+\end{column}
+%
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_01.jpg}
+\end{figure}
+\small{Landscape ecology of diverse regions of Africa reflects a variety of impact factors: tectonic-geologic setting, climate change and anthropogenic activities}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Research Progress: Current state of the project}
+\vspace{8pt}
+Current state: mapping of 27 African countries is published in 32 journal articles
+\begin{table}\scriptsize
+\begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{2.2cm} p{1.2cm} p{6.0cm} |}
+\multicolumn{1}{@{\makebox[2em][r]{No}} | l}{Name} & Publication & Link  \\ 
+		\arrayrulecolor[RGB]{184,210,0}\hline\hline
+	Algeria & \cite{Lemenkova202313} & \href{https://doi.org/10.3390/asi6040061}{doi: 10.3390/asi6040061} \\
+       		\arrayrulecolor[RGB]{195,216,37}\hline
+	Botswana & \cite{Lemenkova202217} & \href{https://doi.org/10.3390/ijgi11090473}{doi: 10.3390/ijgi11090473}\\
+        		\arrayrulecolor[RGB]{170,207,83}\hline
+	Burkina Faso & \cite{Lemenkova202321} & \href{https://doi.org/10.24425/agg.2023.146157}{doi: 10.24425/agg.2023.146157} \\
+        		\arrayrulecolor[RGB]{199,220,104}\hline
+	Cameroon & \cite{Lemenkova202024} & \href{https://doi.org/10.47246/CEJGSD.2020.2.2.4}{doi: 10.47246/CEJGSD.2020.2.2.4} \\
+        		\arrayrulecolor[RGB]{216,230,152}\hline
+	Central Africa Republic & \cite{Lemenkova202308} & \href{https://doi.org/10.3390/min13050604}{doi: 10.3390/min13050604} \\
+        		\arrayrulecolor[RGB]{224,235,175}\hline
+	Chad & \cite{Lemenkova202323} & \href{https://doi.org/10.2478/boku-2023-0005}{doi: 10.2478/boku-2023-0005} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline	
+	D.R.C. Congo & \cite{Lemenkova202229} & \href{https://doi.org/10.3390/app122412554}{doi: 10.3390/app122412554} \\
+		\arrayrulecolor[RGB]{185,208,139}\hline	
+	Egypt & \cite{Lemenkova202306} & \href{https://doi.org/10.3390/info14040249}{doi: 10.3390/info14040249} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline	
+	\multirow{ 2}{*}{Ethiopia} & \cite{Lemenkova202221,Lemenkova202205} & \href{https://doi.org/10.24425/jwld.2022.141573}{doi: 10.24425/jwld.2022.141573}; \href{https://doi.org/10.5755/j01.erem.78.1.29963}{doi: 10.5755/j01.erem.78.1.29963} \\
+	& \cite{Lemenkova202118,Lemenkova202136} & \href{https://doi.org/10.4314/sinet.v44i1.9}{doi: 10.4314/sinet.v44i1.9}; \href{https://doi.org/10.2478/abmj-2021-0010}{doi: 10.2478/abmj-2021-0010} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Ghana & \cite{Lemenkova202211,Lemenkova202140} & \href{https://doi.org/10.24425/gac.2022.141169}{doi: 10.24425/gac.2022.141169}; \href{https://doi.org/10.32909/kg.20.36.2}{doi: 10.32909/kg.20.36.2} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Guinea & \cite{Lemenkova202325} & \href{https://doi.org/10.5281/zenodo.10673287}{doi: 10.5281/zenodo.10673287} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Ivory Coast (Côte d'Ivoire) & \cite{Lemenkova202227} & \href{https://doi.org/10.3390/jimaging8120317}{doi: 10.3390/jimaging8120317} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Kenya & \cite{Lemenkova202315} & \href{https://doi.org/10.2478/trser-2023-0008}{doi: 10.2478/trser-2023-0008} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Malawi & \cite{Lemenkova202209,Lemenkova202134} & \href{https://doi.org/10.5937/tehnika2202183L}{doi: 10.5937/tehnika2202183L};  \href{https://doi.org/10.5281/zenodo.5772315}{doi: 10.5281/zenodo.5772315} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Mali & \cite{Lemenkova202324} & \href{https://doi.org/10.2478/arsa-2023-0011}{doi: 10.2478/arsa-2023-0011} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Mozambique & \cite{Lemenkova202401} & \href{https://doi.org/10.3390/coasts4010008}{doi: 10.3390/coasts4010008} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Nigeria & \cite{Lemenkova202307} & \href{https://doi.org/10.3390/jmse11040871}{doi: 10.3390/jmse11040871} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Rwanda & \cite{Lemenkova202220} & \href{https://doi.org/10.5281/zenodo.7113414}{doi: 10.5281/zenodo.7113414} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Sierra Leone & \cite{Lemenkova202406} & \href{https://doi.org/10.5281/zenodo.11473307}{doi: 10.5281/zenodo.11473307} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Somalia and Seychelles & \cite{Lemenkova202230} & \href{https://doi.org/10.2478/jaes-2022-0026}{doi: 10.2478/jaes-2022-0026} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	South Africa & \cite{Lemenkova202405} & \href{https://journals.openedition.org/physio-geo/17018}{doi: 10.4000/11pyj} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	South Sudan & \cite{Lemenkova202320} & \href{https://doi.org/10.3390/analytics2030040}{doi: 10.3390/analytics2030040} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline	
+	Sudan & \cite{Lemenkova202310} & \href{https://doi.org/10.3390/jimaging9050098}{doi: 10.3390/jimaging9050098} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Tanzania & \cite{Lemenkova202206} & \href{https://doi.org/10.3176/earth.2022.05}{doi: 10.3176/earth.2022.05} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Tunisia & \cite{Lemenkova202322} & \href{https://doi.org/10.3390/land12111995}{doi: 10.3390/land12111995} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Uganda & \cite{Lemenkova202122} & \href{https://doi.org/10.5281/zenodo.5082861}{doi: 10.5281/zenodo.5082861} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Zambia & \cite{Lemenkova202108} & \href{https://doi.org/10.5937/ZemBilj2101117L}{doi: 10.5937/ZemBilj2101117L} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{Data}
+
+\begin{frame}\frametitle{Data}
+\vspace{1em}
+\begin{itemize}\footnotesize
+            \item Understanding complexity and variability of landscapes requires processing of large amounts of diverse datasets 
+            \item Multi-source data $=>$ effective, rapid yet accurate processing
+            \item High-resolution data $=>$ at print-quality mapping and modelling. Accuracy of digital Earth data is of crucial importance, because it directly controls research output. 
+\end{itemize}
+
+\begin{table}\footnotesize\caption{Data used in this project: their sources, types and precision}\label{tab:T2}
+\begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{2.5cm} p{1.5cm} p{5cm} }
+\multicolumn{1}{@{\makebox[2em][r]{No}} | l}{Data} & Origine & Type, resolution \\ 
+		\arrayrulecolor[RGB]{211,204,214}\hline\hline		
+         Landsat 8-9 OLI/TIRS & USGS & satellite images \\       
+       		\arrayrulecolor[RGB]{166,154,189}\hline
+	ETOPO1 & NOAA & 1 arc-min GRM grid\\       
+       		\arrayrulecolor[RGB]{166,154,189}\hline
+	ETOPO5 & NOAA & 5 arc min GRM grid \\       
+       		\arrayrulecolor[RGB]{166,154,189}\hline
+	GEBCO & BODC & 15 arc sec DEM raster grid \\       
+       		\arrayrulecolor[RGB]{166,154,189}\hline				
+        SRTM & NASA & 15-sec DEM raster grid \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	Geology & USGS & Vector layers for diverse African countries \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	Social data & FAO & Vector layers for administrative borders and population \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	Gravity & Scripps IO & CryoSat-2, Jason-1 grid \\ 
+		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	EGM96 & Scripps IO & Geopotential data: geoid \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	EGM-2008 & Scripps IO & Geoid model \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline	
+	TerraClimate & NOAA & Climate characteristics of African landscapes  \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline	
+	GLOBE dataset & NOAA & Topography model \\   
+		\arrayrulecolor[RGB]{166,165,196}\hline\hline	
+	GEBCO & IHO-IOC & Geographic gazetteer \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+\end{tabular}
+\end{table}
+\footnotesize{*30 arc second = ca. 1km cell size, 15 arc sec = ca. 500 m cell size, etc.}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{Methods}
+
+\begin{frame}\frametitle{Methods}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{-0.1em}
+Cartographic tasks by scripts: Generic Mapping Tools (GMT)
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_38.jpg}
+	\caption{Using GMT as integrated tools for cartographic workflow}
+\end{figure}
+\vspace{-1em}
+\begin{itemize}\footnotesize
+	\item Plotting a map by GMT becomes a rapid procedure, fully controlled by the cartographer 
+	\item Such automatisation by GMT facilitates mapping and decreases time of cartographic workflow
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+%\vspace{-0.1em}
+\begin{column}{0.9\textwidth}
+\begin{itemize}\footnotesize
+	\item Various GMT techniques and modules have been used in this research for rapid and accurate mapping
+	\begin{dinglist}{224}\footnotesize
+		\item  \textcolor{SlateBlue}{gmt psxy} for plotting graphs and adding annotations on raster map
+		\item  \textcolor{SlateBlue}{gmt makecpt} for making color palette
+		\item  \textcolor{SlateBlue}{gmt grdimage} for generating raster image
+		\item  \textcolor{SlateBlue}{gmt psscale} for adding legend for adding scale
+		\item  \textcolor{SlateBlue}{gmt grdcontour} for adding isolines
+		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding grid and essential cartographic marks
+		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding scale and directional rose
+		\item  \textcolor{SlateBlue}{echo} UNIX utility for adding text labels
+		\item  \textcolor{SlateBlue}{gmt pstext} for adding subtitle
+		\item  \textcolor{SlateBlue}{gmt logo} for adding GMT logo
+		\item  \textcolor{SlateBlue}{gmt psconvert} for convert PS to image (by GhostScript interpreter)
+		\item  \textcolor{SlateBlue}{gmt legend} adding legend on maps with cartographic annotations
+		\item  \textcolor{SlateBlue}{gmt pshistogram} for statistical analysis of topographic data distribution (relief)
+		\item  \textcolor{SlateBlue}{gmt psrose} for plotting rose diagrams
+		\item  \textcolor{SlateBlue}{gmt img2grd} converting geospatial formats
+		\item  \textcolor{SlateBlue}{gmt grdcut} selecting study area and clipping the region from the world map
+	 \end{dinglist}
+\end{itemize}
+These and many other modules of GMT were used in this research.
+\end{column}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{DZ}
+
+\begin{frame}\frametitle{Algeria}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\vspace{2em}
+\begin{itemize}
+     \item Algeria -- the largest country in Africa and the Mediterranean Basin.
+     \item Contrasting environment: 
+     	\begin{itemize}
+	     \item \textcolor{red}{south} - a significant part of Sahara Desert; 
+	     \item \textcolor{red}{center} --  Tell Atlas Mts. (Saharan Atlas) + vast plains, highlands (e.g., Hoggar Mts) \& mountain ranges
+	      \item \textcolor{red}{coastal} areas: hilly \& mountainous landscapes, a few harbours.
+	 \end{itemize}
+     \item Diverse topographic setting + climate setting = contrasting precipitation patterns
+     \item Salt lakes (saline sabkhas) in the semi-desert environment on border of Sahara            
+\end{itemize}	
+\end{column}
+\begin{column}{0.6\textwidth}
+\vspace{2ex}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.5cm]{Fig_03.jpg}
+	\caption{Topographic map of Algeria}
+\end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\begin{frame}\frametitle{Algeria, Sahara: Sabkhas Salt Lakes}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_04.jpg}
+	\caption{Sabkha - coastal sandy flats of northern Algeria where evaporite and saline minerals accumulate. Sabkhas fluctuate seasonally and over years (subject to climate change)}
+\end{figure}	
+\end{column}
+
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5cm]{Fig_05.jpg}
+	\caption{Workflow used to map sabkhas of Algeria using RS data}
+\end{figure}
+\begin{itemize}
+     \item Sabkha of Algeria - in semiarid to arid climate (border of Sahara + impact of Mediterranean).
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{BW}
+
+\begin{frame}\frametitle{Botswana}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+%\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_06.jpg}
+	\caption{Topographic map of Botswana with specific geographic features.}
+\end{figure}
+\vspace{-1em}
+ \begin{itemize}\footnotesize
+     \item \textcolor{red}{Relief}: mostly flat, gently rolling tableland    
+     \item \textcolor{red}{Climate}: dominated by the Kalahari Desert (ca. 70\% of its land surface)
+     \item \textcolor{red}{Hydrology}: Okavango Delta -- one of the world's largest inland river deltas (UNESCO World Heritage Site) is located in Botswana. 
+\end{itemize}
+
+\end{column}
+\begin{column}{0.5\textwidth}
+%\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_07.jpg}
+	\caption{Right: climate variables over Botswana (here: droughts)}
+\end{figure}
+ \begin{itemize}\footnotesize
+     \item \textcolor{red}{Environment} Okavango Delta -- oasis in an arid climate of Botswana $=>$ large wetland system 
+     \item \textcolor{red}{Ecology} rich wildlife, swamp-dominant rare species. Habitats: salt inlands, lagoons.
+ \end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{BF}
+\begin{frame}\frametitle{Burkina Faso}
+%\vspace{-1em}
+\textcolor{red}{Food insecurity \& Poverty (\$1,000) per capita - IMF '23} Reasons for food instability: 
+      	\begin{itemize}\footnotesize
+    		\item \textcolor{red}{Environmental hazards} Burkina Faso experiences one of the most \textcolor{red}{contrasting climatic variations} in the world with environmental hazards varying from severe floods to extreme drought $=>$ agriculture instability
+      		\item \textcolor{red}{Climate issues}: tropical with two very distinct seasons --  rainy and dry seasons. During dry period - effects from harmattan (hot dry Saharan winds )
+      		\item \textcolor{red}{Agricultural vulnerability}: insect attacks (locusts and crickets), which destroy crops
+		\item \textcolor{red}{Migration}: people migrate to other countries to find better jobs and support for their families
+    	 \end{itemize}
+Topography: flat relief with 2 major types of landscapes influenced by geologic setting.	 	
+ \begin{itemize}\footnotesize
+     \item \textcolor{red}{Peneplain}: larger part of the country (gently undulating landscape and a few isolated hills) from Precambrian massif. 
+     \item \textcolor{red}{Sandstone massif}: on the southwest of the country with the highest peak, Ténakourou
+\end{itemize}	
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=8.5cm]{Fig_08.jpg}
+	\caption{ Data capture from the EarthExplorer repository of the USGS: Landsat-8 OLI/TIRS satellite image, central Burkina Faso, Ouagadougou. Background image: ESRI World imagery. Source:}\label{fig:MAT5}
+\end{figure}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{CM}
+\begin{frame}\frametitle{Cameroon}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5cm]{Fig_09.jpg}
+	\caption{Topographic map of Camerron}
+\end{figure}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\vspace{-1em}
+\begin{alertblock}{Cameroon -- Africa in miniature}
+All major climates and vegetation of the continent: 
+ \begin{itemize}
+     \item Landscapes: a mixture of \textcolor{blue}{coastal} ecosystems, \textcolor{blue}{desert} plains and \textcolor{blue}{mountains} and \textcolor{blue}{savannah} in the central regions, \textcolor{blue}{tropical rain forests} in the south
+\end{itemize} 
+\end{alertblock}
+%
+\begin{alertblock}{Social-environmental problems of Cameron}
+ \begin{itemize}
+     \item \textcolor{red}{Population growth}, urbanisation and industrialisation 
+     \item \textcolor{red}{Land degradation}, water / air pollution
+     \item \textcolor{red}{Waste management} (plastic pollution)
+     \item \textcolor{red}{Anglophone crisis}: colonial history of Cameroon (France and UK shared Cameroon unequally -- French area 80\% of the country $=>$ two nations in one country
+\end{itemize} 	
+\end{alertblock}	
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{Data}
+\begin{frame}\frametitle{Data Integration}
+ 
+\begin{alertblock}{Mapping central African regions (complex geology)}
+Multi-source data mixing and integration using GMT adjustments:
+ \begin{itemize}\footnotesize
+     \item Data mining from open sources (e.g. Landsat, GEBCO, ETOPO1, geological data, etc) for geographic analysis 
+     \item Predictive environmental analytics: forecasting and prognosis in hazard risk assessment based on climate data and FAO information on food security
+     \item Mapping geophysical setting in central African countries, volcanic activity, seismicity, earthquakes
+     \item Data analysis by GMT has potential to advance development of cartography
+     \item It enables scientific discoveries, based on spatial analysis in geology
+\end{itemize}
+\end{alertblock}
+
+\begin{exampleblock}{Scripting techniques in cartography}
+\begin{itemize}\footnotesize
+        	\item GMT-based mapping provides accurate visualization of the complex terrain as in African countries
+\end{itemize}
+\end{exampleblock}
+	
+\begin{alertblock}{Solutions of GMT:}\footnotesize
+ \begin{itemize}
+     \item Advanced level of cartographic functionality: variety of projections, data processing, import/export, etc
+     \item High-quality cartographic output: colour palettes, layouts, grids, vector lines, advanced design approaches
+     \item Flexibility of coding / shell scripting from the console
+     \item Embedded data analysis and visualisation: mapping, modelling, statistical analysis, logical queries, import/export, vector and raster processing
+\end{itemize}
+\end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{CAR}
+\begin{frame}\frametitle{Central African Republic (CAR)}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_10.jpg}
+	\caption{Snippet of the GMT script for cartographic mapping}\label{fig:S01}
+\end{figure}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_11.jpg}
+	\caption{Topographic map and location of the CAR to analyse correlation between topography and geophysical setting}
+\end{figure}	
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{TD}
+
+\begin{frame}\frametitle{Chad}
+\vspace{2em}
+\begin{minipage}[0.5\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.5cm]{Fig_12.jpg}
+	\caption{Topographic map of Chad}
+\end{figure}
+\end{column}
+
+\begin{column}{0.6\textwidth}
+\vspace{-2em}
+\begin{alertblock}{Chad: social-environmental problems}
+\begin{itemize}\footnotesize
+	\item \textcolor{red}{Poverty}: Chad -- the 7th poorest country in the world, with 80\% of the population living below the poverty line (Source: UN' Human Development Index)
+	\item \textcolor{red}{Arid climate, droughts}: Landlocked country with arid climate. Terrestrial ecoregions: savannah, xeric woodlands, south Saharan steppes
+	\item \textcolor{red}{Lake Chad}: important source of food and natural resources; yet subject to seasonal and climate fluctuations
+\end{itemize}
+\end{alertblock}
+
+\begin{exampleblock}{RS and cartography for landscape analysis}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_13.jpg}
+	\caption{Topographic map of the PCT. Source: }\label{fig:PCT1}
+\end{figure}
+\end{exampleblock}	
+
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{CG}
+
+\begin{frame}\frametitle{Congo (D.R.C)}
+\vspace{-0.1em}
+\begin{minipage}[0.45\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.0cm]{Fig_14.jpg}
+		\caption{Topographic map of Congo D.R.C.}\label{fig:P1}
+\end{figure}
+\vspace{-1em}
+\begin{itemize}\footnotesize
+	\item \textcolor{red}{Climate hazards}: Congo: high precipitation and the highest frequency of thunderstorms in the world.
+	\item \textcolor{red}{Environment}: Congolese rainforests -- the 2nd largest rain forest in the world after the Amazon 
+	\item \textcolor{red}{Biodiversity} of Congo: lush jungle rainforest + savannah + grasslands + mountainous terraces
+	\item \textcolor{red}{Geomorphology}: Rwenzori Mountains -- the source of the Nile River with unique (for Africa) alpine meadows
+\end{itemize}
+\end{column}
+
+\begin{column}{0.6\textwidth}
+\vspace{-0.3em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_15.jpg}
+		\caption{Advantages of R for satellite image processing (libraries)}\label{fig:P2}
+\end{figure}
+\vspace{-5pt}	
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_16.jpg}
+		\caption{Workflow for research methodology}\label{fig:P2}
+\end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Congo (D.R.C.)}
+\vspace{2em}
+\begin{minipage}[0.45\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_17.jpg}
+	\caption{Snippet of the R code for unsupervised classification by k-means clustering (Basoko, Congo DRC)}.
+\end{figure}
+\begin{itemize}
+	\item Automatisation in RS data analysis for Congo: diverse geospatial libraries of R
+\end{itemize}
+\end{column}
+%
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_18.jpg}
+	\caption{ k-means clustering classification algorithm in RStudio using the RStoolbox package for satellite image processing (Landsat images covering Congo DRC)}\label{fig:PCT6}
+\end{figure}
+\begin{itemize}
+	\item Automatic image processing by R to study changes in vegetation of Congo, to analyse their correlation with landforms (topography), detect correlation with climate settings
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ---------------------------------------------------------------------------->
+\section{EG}
+\begin{frame}\frametitle{Egypt}
+%\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_19.jpg}
+	\caption{Qena Bend as study area on the map of Egypt}
+\end{figure}
+\begin{itemize}\footnotesize
+     \item Cartographic scripting  by GMT is essential for 3D modelling and geomorphological mapping to capture the correlation between geological, topographic and environmental variables  
+     \item Console-based mapping techniques are \textcolor{red}{script-based} and \textcolor{red}{data-driven}
+\end{itemize}
+\end{column}
+\begin{column}{0.6\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_20.jpg}
+	\caption{3D perspective view of Qena Bend, Nile River, Upper Egypt}
+\end{figure}
+Features of Qena Bend:
+\begin{itemize}\footnotesize 
+	\item Qena Bend -- a remarkable geomorphological feature in southern Egypt.
+	\item Qena Bend presents a great loop of the Nile River towards the east
+	\item Qena Bend is bounded by limestone cliffs on both sides
+	\item Qena Bend is one of the most structurally-complicated regions of the Nile Valley, where it intersects from the east with some tectonic trends: Wadi Qena and Qena--Safaga Shear Zone
+	 \item The geodynamic formation of Qena Bend is still not fully understood.
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{ET}
+
+\begin{frame}\frametitle{Ethiopia}
+%\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_21.jpg}
+	\caption{Geomorphic features of Ethiopia: slope, aspect, DEM and hillshade relief map mapped using R}
+\end{figure}
+\vspace{-2em}
+\begin{alertblock}{Geologic mapping}
+\begin{itemize}\footnotesize
+     \item Advanced cartographic tools $=>$ mapping relief $=>$ understanding the links between geology, geomorphology, seismicity and topography of Ethiopia
+     \item Lnks among geomorphology, tectonics and geology $=>$ insights into geologic evolution of the African continent and current topography of the East African Rift region
+\end{itemize}
+\end{alertblock}		
+\end{column}
+
+\begin{column}{0.38\textwidth}
+\begin{alertblock}{Important geologic-geographic features of Ethiopia}
+\begin{itemize}\footnotesize
+     \item The major part of Ethiopia is located in the Horn of Africa, --  the easternmost part of the African landmass
+     \item Great Rift Valley divides Ethiopia into two parts of landscapes with a vast highland complex of mountains and dissected plateaus 
+	\item Great Rift Valley -- branch of the East African Rift which stretches in SW-NE direction from the Afar Triple Junction.
+	\item Afar Triple Junction is a unique example on the Earth of continental rifting (as opposed to seafloor spreading)
+	\item In brief, the geologic reason for Afar Triple junction -- extension of lithosphere crust, caused by mantle upwelling $=>$ seismically active region
+     \item Great Rift Valley is surrounded by lowlands, steppes, or semi-desert.  
+\end{itemize}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{GH}
+\begin{frame}\frametitle{Ghana}
+\vspace{-0.8em}
+\begin{minipage}[0.9\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.9\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=10cm]{Fig_22.jpg}
+	\caption{Thematic maps of Ghana plotted using GMT}
+\end{figure}
+\vspace{-3.5em}
+\begin{alertblock}{Hydrology of Ghana}
+\begin{itemize}\footnotesize
+      \item White Volta River + its tributary Black Volta, flowing to Lake Volta -- the world's third-largest reservoir by volume and largest by surface area, 
+      \item $=>$ hydroelectric Akosombo Dam -- major electricity producer.
+ \end{itemize}
+\end{alertblock}
+\begin{alertblock}{Ecoregions of Ghana}
+\begin{itemize}\footnotesize
+      \item 5 terrestrial ecoregions of Ghana: \textcolor{red}{Eastern Guinean forests, Guinean forest–savanna mosaic, West Sudanian savanna, Central African mangroves}, and \textcolor{red}{Guinean mangroves}.
+     \item Mapping using diverse data (geologic, topographic, land cover types) helps get better insights into the underlying processes of landscape formation which affect the distribution of vegetation types.      
+\end{itemize}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{GN}
+\begin{frame}\frametitle{Guinea}
+\begin{minipage}[0.4\textheight]{\textwidth}
+
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{-0.7em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4cm]{Fig_23.jpg}
+	\caption{Topographic map of Guinea}
+\end{figure}
+\vspace{-2em}
+\begin{alertblock}{Environmental alerts of Guinea:}
+\begin{itemize}\small
+      \item Reduced wildlife due to human encroachment and hunting (e.g., large mammals)
+	\item overfishing $=>$t hreat to the nation's marine life.  
+	\item Threatened species: the African elephant, Diana monkey, and Nimba otter-shrew.
+	\item A nature reserve Mount \emph{Nimba Strict Nature Reserve} is established on Mt. Nimba: protected area and UNESCO World Heritage Site
+ \end{itemize}
+\end{alertblock}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_24.jpg}
+	\caption{Landscape types of Guinea}
+\end{figure}
+\vspace{-2em}
+\begin{alertblock}{Environmental features of Guinea:}
+\begin{itemize}\small
+      \item Guinean Forests of West Africa Biodiversity hotspot - southern part of Guinea
+      \item Dry savanna woodlands (north-eastern region)
+\item Guinea is home to \textcolor{red}{5 ecoregions}: \emph{Guinean montane forests, Western Guinean lowland forests, Guinean forest-savanna mosaic, West Sudanian savanna, and Guinean mangroves}.
+ \end{itemize}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{CI}
+\begin{frame}\frametitle{Côte d'Ivoire (Ivory Coast)}
+%\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_26.jpg}
+	\caption{Satellite image processing and DEM of Ivory Coast visualised using Python (fragment)}
+\end{figure}
+\vspace{-2em}
+\begin{alertblock}{Environmental highlights of Ivory Coast:}
+\begin{itemize}\small
+      \item The \textcolor{red}{most biodiverse country in West Africa} (over 1,200 animal species, 223 mammals, 702 birds, 161 reptiles, 85 amphibians, 111 fish species, 4,700 plant species, of which 3,927 species of terrestrial plants)
+      \item The \textcolor{red}{world's largest exporter of cocoa beans}; 
+      \item The \textcolor{red}{largest economy in the West African} Economic and Monetary Union (40\% total GDP)
+      \item \textcolor{red}{9 national parks} (the largest -- Assgny National Park); \textcolor{red}{6 terrestrial ecoregions}
+      \item Economy grows fast; high-income country; highly diversified agriculture (cocoa, cashews, coffee, rubber, cotton, palm oil, bananas, etc)
+ \end{itemize}
+\end{alertblock}
+\end{column}
+%
+\begin{column}{0.4\textwidth}	
+%  \vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4cm]{Fig_25.jpg}
+	\caption{Topographic map of Ivory Coast, West Africa}
+\end{figure}
+\vspace{-2em}
+\begin{alertblock}{Environmental problems and alerts in Ivory Coast:}
+\begin{itemize}\small
+      \item \textcolor{red}{High deforestation rates} due to high agriculture activities and economic activities: logging of timber, mineral exploration
+      \item \textcolor{red}{Loss of biodiversity} -- declining variety of flora and fauna
+ \end{itemize}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{KE}
+\begin{frame}\frametitle{Kenya}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{-0.5em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_27.jpg}
+	\caption{Map of Kenya performed using GMT and GEBCO data}
+\end{figure}
+\vspace{-1.5em}
+\begin{alertblock}{East African Rift}
+\textcolor{red}{Tectonics}: active continental rift zone in East Africa which affected countries $=>$ active and dormant volcanoes (incl. Mt. Kilimanjaro, Mt. Kenya etc).
+\end{alertblock}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{-0.5em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5cm]{Fig_28.jpg}
+	\caption{Geological map of Kenya. Source: }\label{fig:VV9}
+\end{figure}
+\vspace{-1.5em}
+Multi-source EO data
+\begin{itemize}\small
+     \item \textcolor{red}{Analysis} of geological data to understand topographic structure which affects distribution of vegetation and landscape formation through relief forms.
+     \item EO data present an \textcolor{red}{integration} of geospatial data, collection of RS resources (Landsat images, topographic and geologic data, climate, vegetation) $=>$ information extraction and knowledge mining 
+     \item \textcolor{red}{Data heterogeneity}: multi-source data of different formats and scales $=>$ data integration and analysis.
+\end{itemize}  
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{TZ}
+\begin{frame}\frametitle{Tanzania}
+\vspace{-0.5em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=3cm]{Fig_29.jpg}
+	\caption{Script used for 3D mapping}
+\end{figure}
+\vspace{-15pt}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.5cm]{Fig_30.jpg}
+	\caption{3D mapping of Tanzania}
+\end{figure}
+\end{column}
+%
+\begin{column}{0.5\textwidth}	
+\vspace{1em}
+3D modelling as important cartographic approach in EO data analysis 
+\begin{dinglist}{120}\footnotesize
+     \item 3D topographic scene effectively illustrates the relief representation 
+     \item Advanced \textcolor{red}{GMT functionalities} specify different cartographic elements on the map for each layer by a combination of the GMT modules (grdview, grdcontour, pscoast, pstext). 
+     \item Cartographic processing includes
+     	 \begin{dinglist}{229}\scriptsize
+   		  \item visualisation of layers (raster grids vector lines)
+		  \item text annotations
+		  \item subplots, hierarchical sub-levels of the elements 
+		  \item coordinate axis labels and grids, translucency of layers
+		  \item general layout setting
+	  \end{dinglist}    
+     \item The outcome of the GMT cartographic processing: \textcolor{red}{print-quality maps}
+     \item 3D modelling of Earth data creates potential for cartographic opportunities in \textcolor{red}{visual data analytics} and interpretation of the seafloor structure
+     \item GMT enables \textcolor{red}{flexible, accurate and rapid visualisation} of the 2D and 3D EO data
+     \item Data selection: 3D modelling of terrain landscapes is limited by massive data processing (3D arrays of cells) $=>$  ETOPO5 presents better
+ \end{dinglist} 
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{MW}
+\begin{frame}\frametitle{Malawi}
+\vspace{-1em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.45\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_31.jpg}
+	\caption{Topographic and seismic maps of Malawi (based on IRIS data on deep earthquakes).}
+\end{figure}
+\end{column}
+%
+\begin{column}{0.4\textwidth}	
+%\vspace{-2em}
+\begin{alertblock}{Geographic features of Malawi:}
+\begin{itemize}\footnotesize
+      \item The \textcolor{red}{Great Rift Valley} runs through the country from N to S
+      \item \textcolor{red}{Lake Malawi} --  (a.k.a. Lake Nyasa) - 3/4 of Malawi's eastern boundary; one of the major Rift Valley ancient lakes
+\item \textcolor{red}{Lake Malawi} - unique meromictic lake (layers of water that don't  intermix and don't circulate) with specific hydrology -- permanently stratified water layers
+ \item \textcolor{red}{Lake Malawi} - \nth{4} largest freshwater lake in the world by volume, the \nth{9} largest lake in the world by area and the \nth{3} largest and \nth{2} deepest lake in Africa.
+\item \textcolor{red}{Lake Malawi National Park} created to protect unique ecosystems of the lake
+\end{itemize}
+\end{alertblock}
+
+\begin{alertblock}{Problems in Malawi:}
+\begin{itemize}\footnotesize
+      \item \textcolor{red}{Tanzania--Malawi dispute} about the borders of the Malawi Lake
+      \item \textcolor{red}{Deforestation} - serious environmental issue
+      \item \textcolor{red}{Scarcity of natural resources} (landlocked)
+       \item \textcolor{red}{Extreme poverty} and rapidly growing population dependent on resources
+\end{itemize}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{ML}
+\begin{frame}\frametitle{Mali}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{-0.5em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_32.jpg}
+	\caption{Topographic map of Mali plotted using GMT scripts and GEBCO data. The green rotated square shows the location of the Landsat satellite images used for image analysis. These images cover the area of Inner Niger Delta.}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{-0.5em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_33.jpg}
+	\caption{Scheme of information extraction from RS data to analyse vegetation indices for ecological monitoring of Niger Inner Delta, Mali. For time series analysis, images are collected in various years.}
+\end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Mali: Inner Niger Delta}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+%\vspace{-2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_34.jpg}
+	\caption{Landsat 8-9 OLI/TIRS images: showing Niger Inner Delta, Mali in natural colours.}
+\end{figure}
+\vspace{-2em}
+\begin{alertblock}{Image processing by R}
+\begin{itemize}\footnotesize
+      \item Analysing land cover types by R-based satellite image processing $=>$ \textcolor{red}{visualising heterogeneity} of landscape features formed under various environmental setting: 
+      \item Example of data analysis by R: computing vegetation indices in Mali; clustering for image classification.
+      \item Data analysis in R is based on a full range of algorithms used in RS data processing.
+\end{itemize} 
+\end{alertblock}
+\end{column}
+%
+\begin{column}{0.5\textwidth}
+%\vspace{-2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.5cm]{Fig_35.jpg}
+	\caption{Unsupervised classification by k-means clustering: Inner Niger Delta}
+\end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{MZ}
+
+\begin{frame}\frametitle{Mozambique}
+
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+%\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_36.jpg}
+	\caption{Workflow used for RS data classification using Random Forest (RF) in GRASS GIS: A case of Mozambique}
+\end{figure}
+\vspace{-2em}
+\begin{alertblock}{Environmental problems in Mozambique}
+\begin{itemize}\footnotesize
+	\item \textcolor{red}{Deforestation} \& loss of natural habitats; disrupted coastal ecosystems, land cover change, land degradation
+	\item \textcolor{red}{Mangroves} and wetlands are being lost and converted into rice farms, aquaculture and housing
+	\item \textcolor{red}{Climate change} and high population growth
+	\item \textcolor{red}{Destructive fishing} practices (e.g. use of dynamite \& fine mesh nets) $=>$ declining fish stocks; 
+\end{itemize}
+\end{alertblock}
+\end{column}
+\begin{column}{0.45\textwidth}
+%\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.5cm]{Fig_37.jpg}
+	\caption{RS data classification using Random Forest in GRASS GIS}
+\end{figure}
+\vspace{-2em}
+\begin{alertblock}{Climate setting in Mozambique}
+\begin{itemize}\footnotesize
+      \item Tropical climate with two seasons: wet (Oct-Mar) and dry (Apr-Sep); $=>$ responses of vegetation. 
+\item Climatic conditions vary with altitude. 
+\item Rainfall is heavy along the coast and decreases in the north and south of Mozambique.
+\end{itemize}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{ML}
+
+\begin{frame}\frametitle{Deep Learning / Machine Learning}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+%\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.0cm]{Fig_39.jpg}
+	\caption{Conceptual scheme of ML/DL algorithms}
+\end{figure}
+\vspace{-2em}
+\begin{alertblock}{ML in cartography and geoinformatics}
+\begin{dinglist}{217}\footnotesize
+     \item Rapid development of ML/DL $=>$ Cartographic knowledge encoding with algorithms of data handling 
+     \item Using cartographic patterns as classification/generalisation
+rules for learning models (as seed) for processing RS data
+     \item DL is a new, rapidly evolving field of ML and consists in advanced algorithms of computer vision and analysis. 
+\item ML algorithms include, among others, methods of Artificial Neural Networks (ANN), Random Forest (RF), Convolution Neural Networks (CNN) and Recurrent Neural Networks (RNN), Support Vector Machines (SVM)
+\end{dinglist}
+\end{alertblock}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_40.jpg}
+	\caption{Methodological scheme of ANN}
+\end{figure}
+\begin{alertblock}{ML opportunities for satellite image processing}
+\begin{dinglist}{217}\footnotesize
+     \item \textcolor{red}{ML techniques} (Python, R, GRASS GIS) can help visualise land cover patterns in landscapes using classification of RS data
+     \item Land cover types of the diverse landscapes are inherently linked with regional topographic, geologic and climate setting
+     \item ML enables to get \textcolor{red}{insights into land cover patterns} (variability, dynamics using time series analysis, fragmentation) formed in various environmental conditions in diverse ecoregions of Africa
+\end{dinglist}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{NG}
+
+\begin{frame}\frametitle{Nigeria}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.6\textwidth}
+%\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=7.0cm]{Fig_41.jpg}
+	\caption{Topographic map of Nigeria with shown study area (region of southern coastal Nigeria with mangroves as aquatic plants)}
+\end{figure}
+\end{column}
+\begin{column}{0.4\textwidth}
+%\vspace{-2em}
+\begin{alertblock}{Environmental problems in Nigeria}
+\begin{itemize}\footnotesize
+	\item \textcolor{red}{Deforestation} due to extensive and rapid clearing of forests (reasons: expanding agriculture, logging, urbanisation, and infrastructure development)
+	\item \textcolor{red}{Niger Delta pollution} due to oil exploration / petroleum industry $=>$ Nigeria's Delta region is one of the most oil-polluted aquatories in the world 
+	\item \textcolor{red}{Decline of mangroves} in coastal areas due to oil pollution (mangroves are precious ecosystems and unique saltwater-tolerant plants)
+	\item \textcolor{red}{Land cover changes} (important types: tropical forest zones in the south, wetlands, mangroves and freshwater swamps in the Atlantic coasts)
+	\item \textcolor{red}{Waste management} including sewage treatment $=>$ water pollution, soil contamination (untreated wastes go to groundwater)
+	\item \textcolor{red}{Population growth} $=>$ non-systematic industrial planning, increased urbanisation, increased of urban spaces
+\end{itemize}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+\begin{frame}\frametitle{Nigeria}
+%\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_42.jpg}
+	\caption{Snippet of GRASS GIS script for image processing}
+\end{figure}
+\vspace{-1em}
+\textcolor{red}{RS data processing by GRASS GIS} for analysis of land cover changes in the coastal regions of Nigeria (monitoring the decline of mangroves). 
+\end{column}
+\begin{column}{0.6\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_43.jpg}
+	\caption{Landsat OLI/TIRS images classified using GRASS GIS}
+\end{figure}	
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{RW}
+\begin{frame}\frametitle{Rwanda}
+%\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=11cm]{Fig_44.jpg}
+	\caption{Geophysical maps of Rwanda: seismicity (deep-focus earthquakes according to IRIS), inundations of the geoid model and free-air gravity (Faye's)}
+\end{figure}
+\vspace{-2em}
+\begin{alertblock}{Geographic features and particularities of Rwanda}
+\begin{itemize}\footnotesize
+	\item \textcolor{red}{High-altitude} relief: the entire country is located in uplands and highlands. The lowest point is the Rusizi River (950 m a.s.l)
+	\item \textcolor{red}{Mountains} of Rwanda -  part of the Albertine Rift Mountains (branch of the East African Rift) $=>$ complex geologic and tectonic setting, high seismicity ("Land of a thousand hills").  
+	\item \textcolor{red}{Temperate tropical highland climate} $=>$ montane forests, terraced agriculture
+	\item \textcolor{red}{Volcanoes National Park} $=>$ rare species (1/3 of the worldwide mountain gorilla population) living in bamboo forests; also: rhinos, lions, chimpanzees, and other protected animal species.
+	\item \textcolor{red}{Nyungwe Forest}: rare species endemic to Albertine Rift	
+	\item \textcolor{red}{3 terrestrial ecoregions} $=>$ Albertine Rift montane forests, Victoria Basin forest-savanna mosaic, and Ruwenzori-Virunga montane moorlands.
+\end{itemize}
+\end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{SS}
+\begin{frame}\frametitle{South Sudan}
+\vspace{-0.5em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=10cm]{Fig_45.jpg}
+	\caption{Image segmentation performed using GRASS GIS for Landsat images covering South Sudan}
+\end{figure}
+\vspace{-2em}
+\begin{alertblock}{Highlights of South Sudan}
+\begin{dinglist}{96}\footnotesize
+	\item \textcolor{red}{Civil war} $=>$ destruction and displacement $> 2 M$ people died, and $> 4$ M became refugees or displaced persons
+	\item \textcolor{red}{Origine of Nile -- White Nile} passes through the country, passing by Juba. Name "White" due to clay sediment contained in the water $=>$ water color pale
+	\item \textcolor{red}{Rich wildlife} $=>$ tropical forests -- habitat for rare species: bongo, giant forest hogs, red river hogs, forest elephants, chimpanzees, forest monkeys, etc.
+	\item \textcolor{red}{Bandingilo National Park} protected area --  the \nth{2}-largest wildlife migration in the world
+	\item \textcolor{red}{Ecoregions of South Sudan} $=>$ tropical forest, swamps, and grassland
+\end{dinglist}
+\end{alertblock}
+\end{frame}
+
+ % ---------------------------------------------------------------------------->
+\section{SD}
+\begin{frame}\frametitle{Sudan}
+\vspace{-0.5em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_47.jpg}
+	\caption{Aerial images showing the confluence of the Blue Nile and White Nile which meet in Khartoum to form the Nile}
+\end{figure}
+\vspace{-2.0em}
+\begin{alertblock}{Highlights of Sudan}
+\begin{dinglist}{84}\footnotesize
+	 \item \textcolor{red}{5 Cataracts of Nile}: 5 out of 6 Cataracts of Nile are located in Sudan (from \nth{2} to \nth{6}, with only the \nth{1} being in Egypt)
+	 \item \textcolor{red}{Land cover changes in Sudan}: Desertification, deforestation, soil erosion $=>$ displacement of vegetation
+	 \item \textcolor{red}{Environmental problems}: water \& air pollution, waste management, trash and plastic disposal  
+	 \item \textcolor{red}{Human activities}: unsustainable agricultural expansion $=>$ soil desiccation, lowering of soil fertility and water table
+	  \item \textcolor{red}{Threats to wildlife} through poaching and illegal hunting
+	 \item \textcolor{red}{Natural hazards}: sandstorms in northern dry regions ("haboob").
+\end{dinglist}
+\end{alertblock}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_46.jpg}
+	\caption{Cataracts of Nile on the topographic map of Sudan}
+\end{figure}	
+\vspace{-2.0em}
+\begin{alertblock}{Cataract-related landscape formation}\footnotesize
+Region of northern Sudan is tectonically active $=>$ Nubian Swell has diverted the Nile's course $=>$ formation of the cataracts, shallow depth of Nile $=>$ black soil/deposits in arid areas of cataracts $=>$ shallow alkaline pans $=>$ swampy environment in cataracts's areas, northern Sudan
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ---------------------------------------------------------------------------->
+\section{TN}
+\begin{frame}\frametitle{Tunisia}
+\vspace{-0.5em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=9.0cm]{Fig_48.jpg}
+	\caption{RS data processing to compared two gulfs of Tunisia (Gulf of Gabes and Gulf of Hammamet): A GRASS GIS approach}
+\end{figure}
+\end{frame}
+
+ % ---------------------------------------------------------------------------->
+\section{UG}
+\begin{frame}\frametitle{Uganda}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{-0.5em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.0cm]{Fig_49.jpg}
+	\caption{Topographic map of Uganda}
+\end{figure}
+\vspace{-35pt}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.0cm]{Fig_50.jpg}
+	\caption{Seismicity in Uganda}
+\end{figure}
+\end{column}
+%
+\begin{column}{0.5\textwidth}
+%\vspace{-2.0em}
+\begin{alertblock}{Highlights of Uganda}
+\begin{dinglist}{84}\footnotesize
+	 \item \textcolor{red}{Tectonic setting}: The Great Rift Valley of East Africa Rift System (EARS) -- a unique combination of graben basins forming a complex Afro-Arabian rift system. 
+	 \item \textcolor{red}{Geographic location}: Uganda is located in the eastern part of the EARS $=>$ diverse geomorphology, consisting of volcanic hills, mountains, dense hydrologic network of lakes and river basins. 
+	 \item \textcolor{red}{Geology}: The Albertine Graben is a geologically important region of Uganda and one of the most petroliferous rifts in Africa. 
+	 \item \textcolor{red}{Mountainous geomorphology}: Rwenzori mountains -- the highest non-volcanic, non-orogenic mountains in the world.
+	  \item \textcolor{red}{Biodiversity} high biodiversity of Rwenzori Mountains National Park (World Heritage Site) $=>$ vegetation ranging from tropical rainforest to alpine meadows.
+	 \item \textcolor{red}{Landscape mixture}: 5 overlapping vegetation zones in the Ruwenzori Mts: \emph{the evergreen forests, the bamboo; the heather; the alpine; and, the nival zone}
+	 \item \textcolor{red}{Climate change}: impact of global warming and rise in T\degree \space on the Ruwenzori's glaciers $=>$ snow and glaciers melt
+	 \item \textcolor{red}{Environmental issues}: deforestation. Reasons: population growth, agricultural expansion, and the demand for natural resources (timber and charcoal).
+\end{dinglist}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ---------------------------------------------------------------------------->
+\section{ZM}
+\begin{frame}\frametitle{Zambia}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{-0.5em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.5cm]{Fig_51.jpg}
+	\caption{Topographic location of Zambia}
+\end{figure}
+\vspace{-15pt}
+\begin{alertblock}{Zambia: geographic and environmental features}
+ \begin{itemize}\footnotesize
+ 	\item \textcolor{red}{Climate}: humid subtropical or tropical wet and dry (Source: Köppen climate classification). 
+	\item \textcolor{red}{Lication}: Landlocked country in southern Africa which influences types of vegetation 
+	\item \textcolor{red}{Biodiversity}: ecosystems in Zambia include forest, thicket, woodland and grassland vegetation
+	\item \textcolor{red}{Geomorphology}: high plateaus with some hills and mountains, dissected by river valleys
+\end{itemize}
+\end{alertblock}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{-0.5em}
+\begin{alertblock}{GMT-based mapping}
+ \begin{itemize}\small
+     \item Scripting techniques have the advantage of increased speed, accuracy and precision of mapping which enables rapid EO and RS data processing
+     \item Validity and utility of data models in GMT 
+     \item Embedded mathematical algorithms of data modelling and cartographic principles 
+     \item GMT $=>$ deeper understanding of the underlying processes affecting the Earth's landscapes across Africa
+     \item With increasing rise and constant updates in EO data availability in environmental analysis, it is essential to apply data-driven mapping and script-based cartographic visualisation 
+      \item ML facilitates cartographic workflow
+       \item Processing large volumes of heterogeneous and rapidly arriving digital geodata using scripts and ML supports GIS. 
+       \item GMT-based mapping uses scripts which optimises cartographic workflow
+\end{itemize} 
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+\section{Con}
+
+\begin{frame}\frametitle{Conclusions}
+
+\begin{alertblock}{Monitoring landscapes of Africa using EO data and integration of advanced cartographic tools}
+\begin{dinglist}{51}\footnotesize
+       \item African landscape are very complex. In this research proposal, selected examples of these ecosystems were presented to illustrate current state of the research
+     \item Next steps in the proposed research include publishing 3-4 articles (reviews) that will summarise the variability of African landscapes with focus on climate change issues, environmental dynamics, anthropogenic impacts, topographic-geologic setting which shape the face of the African countries and help get more insights in its unique landscapes
+     \item In the era of big EO data, these research aims at integrated monitoring of African ecosystems using advanced cartographic tools such as GMT scripts, R and Python for image processing (computing vegetation indices, image segmentation) and ML algorithms for image classification
+     \item ML methods of GRASS GIS were used with a case of Random Forest for the cases of Mozambique land cover types
+     \item The demands from environmental landscape analysis for effective methods of EO data processing is explained by the overwhelming increase of data that should be processed rapidly yet effectively for the scale of African continent
+     \item The study presented cartographic challenges faced in large-scale environmental approach: A case of diverse landscape and ecoregions of Africa
+     \item Benefits of scripting tools and programming algorithms used for cartographic data processing are discussed
+     \item Advanced software ensure processing of multi-source data with diverse formats (export, converting and import via GDAL), diverse geospatial data type (raster, vector and tabular), high processing speed, and mapping accuracy
+     \item Cartographic development opportunities in the era of big EO data are related to the machine-based data processing, that is scripting and algorithms of automatisation of satellite image processing and classification
+     \item Modelling landscape of Africa starts with diversified steps of processing and includes advanced algorithms of data handling
+     \item GRASS GIS, GMT, Python and R -- all these software present a smart methodological combination for RS data processing
+     \item The use of such technologies in landscape analysis results in the accurate processing large amounts of geospatial data including satellite images which enable to reveal complex heterogeneous characteristics of the African landscapes
+ \end{dinglist} 
+ \end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{Thanks}
+\begin{frame}\frametitle{Thanks}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.40\textwidth}
+\begin{tikzpicture}%
+\node[anchor=south west, inner sep=0] (X) at (5,5){\includegraphics[width=8.5cm]{Fig_52.jpg}};%
+\begin{scope}[x={(X.south east)},y={(X.north west)}]%
+%% This makes all measurements with no units into fractions of the width
+%% and height of the graphic contained in the node.
+\fill[fill = white,fill opacity=0.6] ($(X.south west) + (0,1in)$) rectangle ($(X.north east) - (0,1in)$);%
+\node[text width=8cm] (Z) at (0.5,0.5) {%
+  \sffamily\centering\large \textcolor{NavyBlue}{Thank you for attention !}\par%
+};
+\end{scope}%
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.15\textwidth}
+\vspace{14.0em}
+\begin{alertblock}{Questions ?}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+
+%%%%%%%%%%% Bibliography %%%%%%%
+\section{Bibliography}
+\large{Author's publications}
+\nocite{*}
+\printbibliography
+
+	
+%%%%%%%%%%% Bibliography %%%%%%%	
+\end{document}
