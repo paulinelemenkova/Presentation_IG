@@ -311,149 +311,120 @@
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{AF}
-\begin{frame}\frametitle{Научный задел}
-\begin{minipage}[0.4\textheight]{\textwidth}
-\begin{columns}[T]
-\begin{column}{0.4\textwidth}
-\vspace{2em}
-\begin{itemize}
-	\item \textcolor{red}{Тенденции}: Выявление закономерностей пространственно-временных изменений почвенно-растительного покрова, структуры и динамики ландшафтов под влиянием природных и антропогенных факторов для рационализации природопользования ландшафтов Африки
-	\item \textcolor{red}{Временной анализ изображений}: На основе спутниковых данных 2013–2023 гг. на территории разных регионов Африки выявлена динамика изменений типов почвенно-растительного покрова. Получены количественные оценки уровня изменений (сокращение, стабилизация, увеличение) за вегетационный сезон на хронорядах разновременных спутниковых снимков (Landsat TM/ETM+ OLI/TIRS, Sentinel-2A) и их синтезированные изображений.
-	\item \textcolor{red}{Прибрежные зоны}: Анализ временных рядов снимков выявил изменения мангровых лесов (смещение на север и изменение структуры) в районе западной Африки (побережье Гвинейского залива, в устьях рек южной Нигерии - р. Нигер с притоками), связанные с воздействием климатических факторов: повышение температуры и уровня моря
-	\item \textcolor{red}{Нерациональное использование ресурсов} Результаты исследований спутниковых рядов (2002–2025 гг.) показали изменения типов почвенно-растительного покрова в бассейне крупнейших рек Африки (Нил, Конго, Нигер и Замбези): вырубка лесов вдоль берегов рек, и интенсивное использование ресурсов	
-	\item \textcolor{red}{Значимые факторы} дешифрирования снимков: структура почвенно-растительного покрова по категориям земель, устанавливаемые виды использования земель (антропогеные факторы) и их пространственно-временная динамика. 
-\end{itemize}
-\end{column}
-%
-\begin{column}{0.5\textwidth}
-\vspace{2em}
-\begin{figure}[H]
-	\centering
-		\includegraphics[width=5.0cm]{Fig_01.jpg}
-\end{figure}
-\small{Landscape ecology of diverse regions of Africa reflects a variety of impact factors: tectonic-geologic setting, climate change and anthropogenic activities}
-\end{column}
-\end{columns}
-\end{minipage}
-\end{frame}
+\section{Данные}
 
-% ---------------------------------------------------------------------------->
-\section{Data}
-
-\begin{frame}\frametitle{Data}
-\vspace{1em}
-\begin{itemize}\footnotesize
-            \item Understanding complexity and variability of landscapes requires processing of large amounts of diverse datasets 
-            \item Multi-source data $=>$ effective, rapid yet accurate processing
-            \item High-resolution data $=>$ at print-quality mapping and modelling. Accuracy of digital Earth data is of crucial importance, because it directly controls research output. 
-\end{itemize}
-
-\begin{table}\footnotesize\caption{Data used in this project: their sources, types and precision}\label{tab:T2}
+\begin{frame}\frametitle{Данные}
+\begin{table}\footnotesize\caption{Использованные данные: источники, типы и точность}\label{tab:T2}
 \begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{2.5cm} p{1.5cm} p{5cm} }
-\multicolumn{1}{@{\makebox[2em][r]{No}} | l}{Data} & Origine & Type, resolution \\ 
+\multicolumn{1}{@{\makebox[2em][r]{No}} | l}{Данные} & Источник & Тип, разрешение \\ 
 		\arrayrulecolor[RGB]{211,204,214}\hline\hline		
-         Landsat 8-9 OLI/TIRS & USGS & satellite images \\       
+         Landsat 8-9 OLI/TIRS & USGS & ДДЗ \\       
        		\arrayrulecolor[RGB]{166,154,189}\hline
-	ETOPO1 & NOAA & 1 arc-min GRM grid\\       
+	ETOPO1 & NOAA & 1 arc-min GRM грид\\       
        		\arrayrulecolor[RGB]{166,154,189}\hline
-	ETOPO5 & NOAA & 5 arc min GRM grid \\       
+	ETOPO5 & NOAA & 5 arc min GRM грид \\       
        		\arrayrulecolor[RGB]{166,154,189}\hline
-	GEBCO & BODC & 15 arc sec DEM raster grid \\       
+	GEBCO & BODC & 15 arc sec ЦМР (растр)\\       
        		\arrayrulecolor[RGB]{166,154,189}\hline				
-        SRTM & NASA & 15-sec DEM raster grid \\      
+        SRTM & NASA & 15-sec ЦМР (растр)\\      
         		\arrayrulecolor[RGB]{166,165,196}\hline\hline
-	Geology & USGS & Vector layers for diverse African countries \\      
+	Геология & USGS & векторные (.shp) \\      
         		\arrayrulecolor[RGB]{166,165,196}\hline\hline
-	Social data & FAO & Vector layers for administrative borders and population \\      
+	Соц-экон данные & FAO & векторные данные (административные) \\      
         		\arrayrulecolor[RGB]{166,165,196}\hline\hline
-	Gravity & Scripps IO & CryoSat-2, Jason-1 grid \\ 
+	Гравиметрия & Scripps IO & CryoSat-2, Jason-1 растры \\ 
 		\arrayrulecolor[RGB]{166,165,196}\hline\hline
-	EGM96 & Scripps IO & Geopotential data: geoid \\      
+	EGM96 & Scripps IO & Геоид \\      
         		\arrayrulecolor[RGB]{166,165,196}\hline\hline
-	EGM-2008 & Scripps IO & Geoid model \\      
+	EGM-2008 & Scripps IO & Модель геоида \\      
         		\arrayrulecolor[RGB]{166,165,196}\hline	
-	TerraClimate & NOAA & Climate characteristics of African landscapes  \\      
+	TerraClimate & NOAA & Климатические данные \\      
         		\arrayrulecolor[RGB]{166,165,196}\hline\hline	
-	GLOBE dataset & NOAA & Topography model \\   
+	GLOBE dataset & NOAA & Топографические карты (растр) \\   
 		\arrayrulecolor[RGB]{166,165,196}\hline\hline	
-	GEBCO & IHO-IOC & Geographic gazetteer \\      
+	GEBCO & IHO-IOC & Номенклатура \\      
         		\arrayrulecolor[RGB]{166,165,196}\hline\hline
 \end{tabular}
 \end{table}
-\footnotesize{*30 arc second = ca. 1km cell size, 15 arc sec = ca. 500 m cell size, etc.}
-
+\begin{itemize}\footnotesize
+            \item Понимание сложности и изменчивости ландшафтов отдельных районов Африки требует обработки больших объемов разнообразных наборов данных.
+            \item Разноформатные данные были использованы для проведения комплексного анализа геологических, геофизических и экологических условий с целью получения наиболее полного представления о развитии ландшафтов.
+             \item Точность (разрешение) цифровых данных о Земле имеет решающее значение, поскольку напрямую влияет на результаты исследований
+\end{itemize}
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{Methods}
+\section{Методология}
 
-\begin{frame}\frametitle{Methods}
+\begin{frame}\frametitle{Методология}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\vspace{-0.1em}
-Cartographic tasks by scripts: Generic Mapping Tools (GMT)
+\vspace{-0.1em}Картографические задачи с использованием скриптов Generic Mapping Tools (GMT)
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_38.jpg}
-	\caption{Using GMT as integrated tools for cartographic workflow}
+	\caption{Использование GMT в качестве интегрированного инструмента для оптимизации и контроля рабочего процесса}
 \end{figure}
 \vspace{-1em}
-\begin{itemize}\footnotesize
-	\item Plotting a map by GMT becomes a rapid procedure, fully controlled by the cartographer 
-	\item Such automatisation by GMT facilitates mapping and decreases time of cartographic workflow
-\end{itemize}
 \end{column}
 \begin{column}{0.5\textwidth}
-%\vspace{-0.1em}
-\begin{column}{0.9\textwidth}
 \begin{itemize}\footnotesize
-	\item Various GMT techniques and modules have been used in this research for rapid and accurate mapping
+	\item Использованные модули GMT для автоматизированного картирования.
 	\begin{dinglist}{224}\footnotesize
-		\item  \textcolor{SlateBlue}{gmt psxy} for plotting graphs and adding annotations on raster map
-		\item  \textcolor{SlateBlue}{gmt makecpt} for making color palette
-		\item  \textcolor{SlateBlue}{gmt grdimage} for generating raster image
-		\item  \textcolor{SlateBlue}{gmt psscale} for adding legend for adding scale
-		\item  \textcolor{SlateBlue}{gmt grdcontour} for adding isolines
-		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding grid and essential cartographic marks
-		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding scale and directional rose
-		\item  \textcolor{SlateBlue}{echo} UNIX utility for adding text labels
-		\item  \textcolor{SlateBlue}{gmt pstext} for adding subtitle
-		\item  \textcolor{SlateBlue}{gmt logo} for adding GMT logo
-		\item  \textcolor{SlateBlue}{gmt psconvert} for convert PS to image (by GhostScript interpreter)
-		\item  \textcolor{SlateBlue}{gmt legend} adding legend on maps with cartographic annotations
-		\item  \textcolor{SlateBlue}{gmt pshistogram} for statistical analysis of topographic data distribution (relief)
-		\item  \textcolor{SlateBlue}{gmt psrose} for plotting rose diagrams
-		\item  \textcolor{SlateBlue}{gmt img2grd} converting geospatial formats
-		\item  \textcolor{SlateBlue}{gmt grdcut} selecting study area and clipping the region from the world map
+		\item  \textcolor{SlateBlue}{gmt psxy} для построения графиков и добавления аннотаций на карту
+		\item  \textcolor{SlateBlue}{gmt makecpt} для создания цветовой палитры
+		\item  \textcolor{SlateBlue}{gmt grdimage} для создания растрового изображения
+		\item  \textcolor{SlateBlue}{gmt psscale} для добавления легенды для добавления масштаба
+		\item  \textcolor{SlateBlue}{gmt grdcontour} для добавления изолиний
+		\item  \textcolor{SlateBlue}{gmt psbasemap} для добавления сетки и необходимых картографических элементов
+		\item  \textcolor{SlateBlue}{gmt psbasemap} для добавления масштаба и розы ветров
+		\item  \textcolor{SlateBlue}{echo} Утилита UNIX для добавления текстовых меток
+		\item  \textcolor{SlateBlue}{gmt pstext} для добавления подзаголовков
+		\item  \textcolor{SlateBlue}{gmt logo} для добавления логотипа
+		\item  \textcolor{SlateBlue}{gmt psconvert} для преобразования PS в изображение с помощью интерпретатора GhostScript
+		\item  \textcolor{SlateBlue}{gmt legend} добавление легенды на карты с картографическими аннотациями
+		\item  \textcolor{SlateBlue}{gmt pshistogram} для статистического анализа распределения топографических данных
+		\item  \textcolor{SlateBlue}{gmt psrose} для построения диаграмм роз
+		\item  \textcolor{SlateBlue}{gmt img2grd} преобразование геопространственных форматов
+		\item  \textcolor{SlateBlue}{gmt grdcut} выбор исследуемой области или региона из общей мелкомасштабной карты
 	 \end{dinglist}
 \end{itemize}
-These and many other modules of GMT were used in this research.
-\end{column}
 \end{column}
 \end{columns}
 \end{minipage}
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{DZ}
+\section{Примеры}
+\begin{frame}\frametitle{Региональные различия Африки}
+%\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=7.0cm]{Fig_01.jpg}
+\end{figure}
+\small{Ландшафтная экология различных регионов Африки отражает множество факторов воздействия: геологическую обстановку, изменение климата и антропогенную деятельность.}
+\end{frame}
 
-\begin{frame}\frametitle{Algeria}
+
+% ---------------------------------------------------------------------------->
+\section{АЛ}
+
+\begin{frame}\frametitle{Алжир}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
 \vspace{2em}
 \begin{itemize}
-     \item Algeria -- the largest country in Africa and the Mediterranean Basin.
-     \item Contrasting environment: 
+     \item Алжир — крупнейшая страна Африки и Средиземноморского бассейна.
+     \item Разнообразие ландшафтов: от гор Атласа (север), и побережья Средиземного моря до Сахары, занимающей около 80\% территории. 
      	\begin{itemize}
-	     \item \textcolor{red}{south} - a significant part of Sahara Desert; 
-	     \item \textcolor{red}{center} --  Tell Atlas Mts. (Saharan Atlas) + vast plains, highlands (e.g., Hoggar Mts) \& mountain ranges
-	      \item \textcolor{red}{coastal} areas: hilly \& mountainous landscapes, a few harbours.
+	     \item \textcolor{red}{Юг} - a significant part of Sahara Desert; 
+	     \item \textcolor{red}{Центр} -- Горы Тель-Атлас (Сахарский Атлас), обширные равнины, высокогорья (горы Хоггар), горные хребты
+	      \item \textcolor{red}{Побережья}: холмистые и горные ландшафты.
 	 \end{itemize}
-     \item Diverse topographic setting + climate setting = contrasting precipitation patterns
-     \item Salt lakes (saline sabkhas) in the semi-desert environment on border of Sahara            
+     \item Разнообразие топографических и климатических условий, контрастные режимы осадков
+     \item Соляные озера (солёные сабхи) в полупустынной среде на границе Сахары            
 \end{itemize}	
 \end{column}
 \begin{column}{0.6\textwidth}
@@ -461,7 +432,7 @@ These and many other modules of GMT were used in this research.
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6.5cm]{Fig_03.jpg}
-	\caption{Topographic map of Algeria}
+	\caption{Топократа Алжира}
 \end{figure}
 \end{column}
 \end{columns}
@@ -469,15 +440,15 @@ These and many other modules of GMT were used in this research.
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\begin{frame}\frametitle{Algeria, Sahara: Sabkhas Salt Lakes}
-\vspace{2em}
+\begin{frame}\frametitle{Анализ сезонных изменений колебаний уровня воды в бессточных солёных озерах Алжира по временным рядам спутниковых снимков}
+\vspace{1em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig_04.jpg}
-	\caption{Sabkha - coastal sandy flats of northern Algeria where evaporite and saline minerals accumulate. Sabkhas fluctuate seasonally and over years (subject to climate change)}
+	\caption{Сабха -- прибрежные песчаные отмели северного Алжира, где накапливаются эвапориты и соляные минералы. Сабха подвержена сезонным и многолетним колебаниям, в зависимости от изменения климата.}
 \end{figure}	
 \end{column}
 
@@ -485,10 +456,10 @@ These and many other modules of GMT were used in this research.
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5cm]{Fig_05.jpg}
-	\caption{Workflow used to map sabkhas of Algeria using RS data}
+	\caption{Рабочий процесс, используемый для картографирования сабх Алжира с использованием данных ДЗЗ}
 \end{figure}
 \begin{itemize}
-     \item Sabkha of Algeria - in semiarid to arid climate (border of Sahara + impact of Mediterranean).
+     \item Сабха Алжира - в полузасушливом и засушливом климате (граница Сахары + влияние Средиземноморья).
 \end{itemize}
 \end{column}
 \end{columns}
@@ -496,36 +467,37 @@ These and many other modules of GMT were used in this research.
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{BW}
+\section{БВ}
 
-\begin{frame}\frametitle{Botswana}
+\begin{frame}\frametitle{Ботсвана}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
-\begin{column}{0.5\textwidth}
+\begin{column}{0.45\textwidth}
 %\vspace{1em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_06.jpg}
-	\caption{Topographic map of Botswana with specific geographic features.}
+	\caption{Топографическая карта Ботсваны (GMT)}
 \end{figure}
-\vspace{-1em}
+\vspace{-2em}
  \begin{itemize}\footnotesize
-     \item \textcolor{red}{Relief}: mostly flat, gently rolling tableland    
-     \item \textcolor{red}{Climate}: dominated by the Kalahari Desert (ca. 70\% of its land surface)
-     \item \textcolor{red}{Hydrology}: Okavango Delta -- one of the world's largest inland river deltas (UNESCO World Heritage Site) is located in Botswana. 
-\end{itemize}
+     \item \textcolor{red}{Рельеф}: в основном плоская, слегка холмистая местность
+     \item \textcolor{red}{Климат}: преобладает пустыня Калахари (около 70\% поверхности суши)
+     \item \textcolor{red}{Гидрология}: Дельта Окаванго -- одна из крупнейших в мире внутренних речных дельт (объект Всемирного наследия ЮНЕСКО), расположена в Ботсване.
+ \end{itemize}
 
 \end{column}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.6\textwidth}
 %\vspace{1em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_07.jpg}
-	\caption{Right: climate variables over Botswana (here: droughts)}
+	\caption{Климатические изменения в дельте Окаванго}
 \end{figure}
+\vspace{-2em}
  \begin{itemize}\footnotesize
-     \item \textcolor{red}{Environment} Okavango Delta -- oasis in an arid climate of Botswana $=>$ large wetland system 
-     \item \textcolor{red}{Ecology} rich wildlife, swamp-dominant rare species. Habitats: salt inlands, lagoons.
+     \item \textcolor{red}{Происхождение} Дельта Окаванго -- оазис в засушливом климате Ботсваны $=>$ крупная система водно-болотных угодий. Дельта заболочена и мелководна, остатки крупной речной системы древнего озера Макгадикгади (10.000 лет )
+     \item \textcolor{red}{Экология} Дельта Окаванго -- богатая фауна, редкие виды фауны, обитающие преимущественно в болотах и затопленных пойменных лугах. Места обитания: солончаки, лагуны. 
  \end{itemize}
 \end{column}
 \end{columns}
@@ -1438,25 +1410,46 @@ Region of northern Sudan is tectonically active $=>$ Nubian Swell has diverted t
 \end{minipage}
 \end{frame}
 
-\section{Con}
+\section{Результаты}
+\begin{frame}\frametitle{Результаты}
 
-\begin{frame}\frametitle{Conclusions}
+\begin{itemize}\small
+	\item \textcolor{red}{Тенденции}: Выявление закономерностей пространственно-временных изменений почвенно-растительного покрова, структуры и динамики ландшафтов под влиянием природных и антропогенных факторов для рационализации природопользования ландшафтов Африки
+	\item \textcolor{red}{Временной анализ изображений}: На основе спутниковых данных 2013–2023 гг. на территории разных регионов Африки выявлена динамика изменений типов почвенно-растительного покрова. Получены количественные оценки уровня изменений (сокращение, стабилизация, увеличение) за вегетационный сезон на хронорядах разновременных спутниковых снимков (Landsat TM/ETM+ OLI/TIRS, Sentinel-2A) и их синтезированные изображений.
+	\item \textcolor{red}{Прибрежные зоны}: Анализ временных рядов снимков выявил динамику мангровых лесов (смещение на север и изменение структуры) в западной Африке (побережье Гвинейского залива, в устьях рек южной Нигерии - р. Нигер с притоками), связанные с воздействием климатических факторов: повышение температуры и уровня моря
+	\item \textcolor{red}{Нерациональное использование ресурсов} Результаты исследований спутниковых рядов (2002–2025 гг.) показали изменения типов почвенно-растительного покрова в бассейне крупнейших рек Африки (Нил, Конго, Нигер и Замбези): вырубка лесов вдоль берегов рек, и интенсивное использование ресурсов	
+	\item \textcolor{red}{Значимые факторы} дешифрирования снимков: структура почвенно-растительного покрова по категориям земель, устанавливаемые виды использования земель (антропогеные факторы) и их пространственно-временная динамика. 
+	\item \textcolor{red}{Преимущества автоматизации}: использование скриптов и алгоритмов программирования для обработки картографических данных.
+	\item Передовое ПО обеспечивает обработку данных из разных источников и в различных форматах (экспорт, конвертация и импорт через GDAL), различных типов пространственных данных (растровых, векторных и табличных), высокую скорость обработки и точность картографирования.
+\end{itemize}
+\end{frame}
 
-\begin{alertblock}{Monitoring landscapes of Africa using EO data and integration of advanced cartographic tools}
-\begin{dinglist}{51}\footnotesize
-       \item African landscape are very complex. In this research proposal, selected examples of these ecosystems were presented to illustrate current state of the research
-     \item Next steps in the proposed research include publishing 3-4 articles (reviews) that will summarise the variability of African landscapes with focus on climate change issues, environmental dynamics, anthropogenic impacts, topographic-geologic setting which shape the face of the African countries and help get more insights in its unique landscapes
-     \item In the era of big EO data, these research aims at integrated monitoring of African ecosystems using advanced cartographic tools such as GMT scripts, R and Python for image processing (computing vegetation indices, image segmentation) and ML algorithms for image classification
-     \item ML methods of GRASS GIS were used with a case of Random Forest for the cases of Mozambique land cover types
-     \item The demands from environmental landscape analysis for effective methods of EO data processing is explained by the overwhelming increase of data that should be processed rapidly yet effectively for the scale of African continent
-     \item The study presented cartographic challenges faced in large-scale environmental approach: A case of diverse landscape and ecoregions of Africa
-     \item Benefits of scripting tools and programming algorithms used for cartographic data processing are discussed
-     \item Advanced software ensure processing of multi-source data with diverse formats (export, converting and import via GDAL), diverse geospatial data type (raster, vector and tabular), high processing speed, and mapping accuracy
-     \item Cartographic development opportunities in the era of big EO data are related to the machine-based data processing, that is scripting and algorithms of automatisation of satellite image processing and classification
-     \item Modelling landscape of Africa starts with diversified steps of processing and includes advanced algorithms of data handling
-     \item GRASS GIS, GMT, Python and R -- all these software present a smart methodological combination for RS data processing
-     \item The use of such technologies in landscape analysis results in the accurate processing large amounts of geospatial data including satellite images which enable to reveal complex heterogeneous characteristics of the African landscapes
+\section{Заключение}
+
+\begin{frame}\frametitle{Заключение}
+\begin{alertblock}{Мониторинг ландшафтов Африки с использованием данных ДЗЗ и интеграции современных картографических инструментов}
+\begin{dinglist}{51}\small
+      \item Ландшафты африканского континента отличаются сложностью экологических проблем, динамикой и разнообразием. В данном диссертационном проекте представлены отдельные примеры оценки динамики ландшафтов Африки
+ \item Проблема изменчивости африканских ландшафтов связана с совокупностью факторов: изменения климата, динамика окружающей среды, антропогенное воздействие, и топографо-геологические условия, которые формируют условия для развития почвенно-растительного покрова
+	\item Методы МО GRASS GIS были использованы на примере нескольких алгоритмов - Support Vector Machine, случайнsq лес (Random Forest) и пр. для дешифрирования типов почвенно-растительного покрова (напр., Мозамбика).
+\itemТребования к эффективным методам обработки данных ДЗЗ в области экологического ландшафтного анализа объясняются стремительным ростом объема данных, для которых необходима автоматизация обработки. Особенно актуально данное требование для комплексных исследований (в масштабах африканского континента).
+\item В исследованиях, опубликованных по теме диссертации также были рассмотрены технические картографические проблемы, в т.ч. дешифрирование спутниковых данных на примере разнообразных ландшафтов и регионов Африки
  \end{dinglist} 
+ \end{alertblock}
+\end{frame}
+
+\section{Выводы}
+
+\begin{frame}\frametitle{Выводы}
+\begin{alertblock}{Мониторинг ландшафтов Африки с использованием данных ДЗЗ и интеграции современных картографических инструментов}
+\begin{itemize}\small
+	\item Моделирование ландшафтов Африки начинается с различных этапов обработки данных ДЗЗ и включает в себя передовые алгоритмы обработки данных.
+	\item В эпоху больших данных ДЗЗ данное исследование направлено на комплексный мониторинг африканских экосистем с использованием передовых инструментов для автоматизации картографирования и дешифрирования, таких как скрипты GMT, R и Python для обработки изображений (вычисление индексов растительности, сегментация и классификация изображений), а также алгоритмы МО для анализа изображений.
+	\item Техническая новизна работы состоит в преимуществах использования скриптовых инструментов и алгоритмов программирования для обработки картографических данных и ДЗЗ.
+	\item Возможности развития картографии в эпоху больших данных ДЗЗ связаны с машинной обработкой данных, т.е. с разработкой скриптов и алгоритмов автоматизации обработки и классификации спутниковых изображений
+	\item Использование таких технологий в ландшафтном анализе изменений почвенно-растительного покрова обеспечивает точную обработку больших объемов геоданных, включая спутниковые снимки, что позволяет выявлять сложные гетерогенные характеристики африканских ландшафтов.
+	\item В связи с этим, использование передовых ПО -- GRASS GIS, GMT, Python и R -- обеспечивает продуманную методологическую комбинацию для обработки данных ДЗЗ.
+\end{itemize}
  \end{alertblock}
 \end{frame}
 
