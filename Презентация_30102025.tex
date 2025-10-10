@@ -4,10 +4,13 @@
 \usetheme{AnnArbor}
 \graphicspath{{figures/}} % path to folder with Figures
 
-\usepackage[english, russian]{babel}
+\usepackage[english,russian]{babel}
 \usepackage{subfig}
 \usepackage{fancyhdr}
 \usepackage{metalogo}
+\usepackage{multirow}
+\usepackage{array}
+	\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \usepackage[super]{nth}
 \usepackage[font={tiny,it}]{caption} % шрифт подписей к картинкам
 	\setbeamertemplate{caption}[numbered]
@@ -30,7 +33,6 @@
 %%%%%%%%  цветная таблица: конец
 \usepackage{wrapfig}
 \usepackage{csquotes}
-\usepackage{multirow}
 \usepackage{gensymb} % degree symbol
 \usepackage{pifont}
 \usepackage{tikz}
@@ -216,18 +218,112 @@
 \end{frame}
 
 % ---------------------------------------------------------------------------->
+\begin{frame}[t,allowframebreaks]\frametitle{Апробация: опубликовано 45 печатных работ}
+
+\begin{small}
+\begin{longtable}{|p{0.3cm} p{2.5cm} p{2.0cm} p{4.2cm}|}
+\caption{Публикации по теме диссертации}
+\label{tab:table3}\\
+\hline
+\textbf{№} & \textbf{Страна} & \textbf{Публикация} & \textbf{Индекс doi} \\
+\hline
+	1 & Алжир & \cite{Lemenkova202313} & \href{https://doi.org/10.3390/asi6040061}{10.3390/asi6040061} \\
+       		\arrayrulecolor[RGB]{195,216,37}\hline
+	2 & Ангола & \cite{Lemenkova202412} & \href{https://doi.org/10.17707/AgricultForest.70.3.13}{10.17707/AgricultForest.70.3.13} \\
+       		\arrayrulecolor[RGB]{195,216,37}\hline
+	3 & Ботсвана & \cite{Lemenkova202217} & \href{https://doi.org/10.3390/ijgi11090473}{10.3390/ijgi11090473}\\
+        		\arrayrulecolor[RGB]{170,207,83}\hline
+	4 & Буркина Фасо & \cite{Lemenkova202321} & \href{https://doi.org/10.24425/agg.2023.146157}{10.24425/agg.2023.146157} \\
+        		\arrayrulecolor[RGB]{199,220,104}\hline	
+	5 & Бурунди & \cite{Lemenkova202415,Lemenkova202416} & \href{https://doi.org/10.47456/geo.v4i39.46177.fr}{10.47456/geo.v4i39.46177.fr}, \href{https://doi.org/10.47456/geo.v4i39.46177.eng}{10.47456/geo.v4i39.46177.eng} \\
+        		\arrayrulecolor[RGB]{199,220,104}\hline
+	6 & Египет & \cite{Lemenkova202502,Lemenkova202306} & \href{https://doi.org/10.3390/info14040249}{10.3390/info14040249}, \href{https://doi.org/10.1016/j.exco.2025.100180}{10.1016/j.exco.2025.100180} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline	
+	7 & Эфиопия & \cite{Lemenkova202221,Lemenkova202205,Lemenkova202118,Lemenkova202136} & \href{https://doi.org/10.24425/jwld.2022.141573}{10.24425/jwld.2022.141573}; \href{https://doi.org/10.5755/j01.erem.78.1.29963}{10.5755/j01.erem.78.1.29963}, \href{https://doi.org/10.4314/sinet.v44i1.9}{10.4314/sinet.v44i1.9}; \href{https://doi.org/10.2478/abmj-2021-0010}{10.2478/abmj-2021-0010} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	8 & Гана & \cite{Lemenkova202211,Lemenkova202140} & \href{https://doi.org/10.24425/gac.2022.141169}{10.24425/gac.2022.141169}; \href{https://doi.org/10.32909/kg.20.36.2}{10.32909/kg.20.36.2} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	9 & Гвинея & \cite{Lemenkova202325} & \href{https://doi.org/10.5281/zenodo.10673287}{10.5281/zenodo.10673287} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	10 & Гвинея-Бисау & \cite{Lemenkova202414} & \href{https://doi.org/10.2478/trser-2024-0008}{10.2478/trser-2024-0008} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline	
+	11 & Джибути & \cite{Lemenkova202518} & \href{https://doi.org/10.3390/jimaging11080249}{10.3390/jimaging11080249} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline					
+	12 & Замбия & \cite{Lemenkova202108} & \href{https://doi.org/10.5937/ZemBilj2101117L}{10.5937/ZemBilj2101117L} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	13 & Камерун & \cite{Lemenkova202024} & \href{https://doi.org/10.47246/CEJGSD.2020.2.2.4}{10.47246/CEJGSD.2020.2.2.4} \\
+        		\arrayrulecolor[RGB]{216,230,152}\hline
+	14 & Кения & \cite{Lemenkova202315} & \href{https://doi.org/10.2478/trser-2023-0008}{10.2478/trser-2023-0008} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	15 & Конго (Д.Р.К) & \cite{Lemenkova202229} & \href{https://doi.org/10.3390/app122412554}{10.3390/app122412554} \\
+		\arrayrulecolor[RGB]{185,208,139}\hline	
+	16 & Кот-д'Ивуар & \cite{Lemenkova202227} & \href{https://doi.org/10.3390/jimaging8120317}{10.3390/jimaging8120317} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline		
+	17 & Либерия & \cite{Lemenkova202413} & \href{https://doi.org/10.4000/12n0l}{10.4000/12n0l} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline	
+	18 & Мавритания & \cite{Lemenkova202515} & \href{https://doi.org/10.2478/arsa-2025-0003}{10.2478/arsa-2025-0003} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline	
+	19 & Малави & \cite{Lemenkova202209,Lemenkova202134} & \href{https://doi.org/10.5937/tehnika2202183L}{10.5937/tehnika2202183L};  \href{https://doi.org/10.5281/zenodo.5772315}{10.5281/zenodo.5772315} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	20 & Мали & \cite{Lemenkova202324} & \href{https://doi.org/10.2478/arsa-2023-0011}{10.2478/arsa-2023-0011} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline		
+	21 & Марокко & \cite{Lemenkova202501} & \href{https://doi.org/10.3390/geomatics5010005}{10.3390/geomatics5010005} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	22 & Мозамбик & \cite{Lemenkova202401} & \href{https://doi.org/10.3390/coasts4010008}{10.3390/coasts4010008} \\
+        		\arrayrulecolor[RGB]{184,210,0}\hline
+	23 & Намибия & \cite{Lemenkova202516} & \href{https://doi.org/10.5937/ZbDght2501001L}{10.5937/ZbDght2501001L} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline		
+	24 & Нигер & \cite{Lemenkova202417} & \href{https://doi.org/10.5281/zenodo.14557626}{10.5281/zenodo.14557626} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	25 & Нигерия & \cite{Lemenkova202307} & \href{https://doi.org/10.3390/jmse11040871}{10.3390/jmse11040871} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	26 & Руанда & \cite{Lemenkova202220} & \href{https://doi.org/10.5281/zenodo.7113414}{10.5281/zenodo.7113414} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	27 & Сенегал & \cite{Lemenkova202411} & \href{https://doi.org/10.3390/earth5030024}{10.3390/earth5030024} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	28 & Сьерра Леоне & \cite{Lemenkova202406} & \href{https://doi.org/10.2478/trser-2024-0002}{10.2478/trser-2024-0002} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	29 & Сомали, Сейшелы & \cite{Lemenkova202230} & \href{https://doi.org/10.2478/jaes-2022-0026}{10.2478/jaes-2022-0026} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	30 & Судан & \cite{Lemenkova202310} & \href{https://doi.org/10.3390/jimaging9050098}{10.3390/jimaging9050098} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	31 & Танзания & \cite{Lemenkova202206} & \href{https://doi.org/10.3176/earth.2022.05}{10.3176/earth.2022.05} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	32 & Тунис & \cite{Lemenkova202322} & \href{https://doi.org/10.3390/land12111995}{10.3390/land12111995} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	33 & Уганда & \cite{Lemenkova202122} & \href{https://doi.org/10.5281/zenodo.5082861}{10.5281/zenodo.5082861} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	34 & ЦАР & \cite{Lemenkova202308} & \href{https://doi.org/10.3390/min13050604}{10.3390/min13050604} \\
+        		\arrayrulecolor[RGB]{224,235,175}\hline
+	35 & Чад & \cite{Lemenkova202323} & \href{https://doi.org/10.2478/boku-2023-0005}{10.2478/boku-2023-0005} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline	
+	36 & Эритрея & \cite{Lemenkova202521} & \href{https://doi.org/10.5937/engtoday2500008L}{10.5937/engtoday2500008L} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline	
+	37 & ЮАР & \cite{Lemenkova202405} & \href{https://journals.openedition.org/physio-geo/17018}{10.4000/11pyj} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	38 & Южный Судан & \cite{Lemenkova202320} & \href{https://doi.org/10.3390/analytics2030040}{10.3390/analytics2030040} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+\hline\\
+\hline
+\end{longtable}
+\end{small}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------->
 \section{AF}
-\begin{frame}\frametitle{Research Highlights: Variability of African landscapes}
+\begin{frame}\frametitle{Научный задел}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
 \vspace{2em}
 \begin{itemize}
-	\item \textcolor{red}{Complexity}: variability of regional geographic setting on the African continent 
-	\item \textcolor{red}{Scale}: Handling multi-source spatial data for local, regional and continental scales
-	\item \textcolor{red}{Data-driven research}: Variety of RS data (Landsat TM/ETM+ OLI/TIRS, Sentinel-2A, SPOT), weather data as time series, climate forecasts, ecological monitoring, seismic observations (hazard assessment).
-	\item \textcolor{red}{Methods}: Processing spatial data by advanced tools and methods (scripts, programming algorithms)
-\end{itemize}	
+	\item \textcolor{red}{Тенденции}: Выявление закономерностей пространственно-временных изменений почвенно-растительного покрова, структуры и динамики ландшафтов под влиянием природных и антропогенных факторов для рационализации природопользования ландшафтов Африки
+	\item \textcolor{red}{Временной анализ изображений}: На основе спутниковых данных 2013–2023 гг. на территории разных регионов Африки выявлена динамика изменений типов почвенно-растительного покрова. Получены количественные оценки уровня изменений (сокращение, стабилизация, увеличение) за вегетационный сезон на хронорядах разновременных спутниковых снимков (Landsat TM/ETM+ OLI/TIRS, Sentinel-2A) и их синтезированные изображений.
+	\item \textcolor{red}{Прибрежные зоны}: Анализ временных рядов снимков выявил изменения мангровых лесов (смещение на север и изменение структуры) в районе западной Африки (побережье Гвинейского залива, в устьях рек южной Нигерии - р. Нигер с притоками), связанные с воздействием климатических факторов: повышение температуры и уровня моря
+	\item \textcolor{red}{Нерациональное использование ресурсов} Результаты исследований спутниковых рядов (2002–2025 гг.) показали изменения типов почвенно-растительного покрова в бассейне крупнейших рек Африки (Нил, Конго, Нигер и Замбези): вырубка лесов вдоль берегов рек, и интенсивное использование ресурсов	
+	\item \textcolor{red}{Значимые факторы} дешифрирования снимков: структура почвенно-растительного покрова по категориям земель, устанавливаемые виды использования земель (антропогеные факторы) и их пространственно-временная динамика. 
+\end{itemize}
 \end{column}
 %
 \begin{column}{0.5\textwidth}
@@ -240,73 +336,6 @@
 \end{column}
 \end{columns}
 \end{minipage}
-\end{frame}
-
-% ---------------------------------------------------------------------------->
-\begin{frame}\frametitle{Research Progress: Current state of the project}
-\vspace{8pt}
-Current state: mapping of 27 African countries is published in 32 journal articles
-\begin{table}\scriptsize
-\begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{2.2cm} p{1.2cm} p{6.0cm} |}
-\multicolumn{1}{@{\makebox[2em][r]{No}} | l}{Name} & Publication & Link  \\ 
-		\arrayrulecolor[RGB]{184,210,0}\hline\hline
-	Algeria & \cite{Lemenkova202313} & \href{https://doi.org/10.3390/asi6040061}{doi: 10.3390/asi6040061} \\
-       		\arrayrulecolor[RGB]{195,216,37}\hline
-	Botswana & \cite{Lemenkova202217} & \href{https://doi.org/10.3390/ijgi11090473}{doi: 10.3390/ijgi11090473}\\
-        		\arrayrulecolor[RGB]{170,207,83}\hline
-	Burkina Faso & \cite{Lemenkova202321} & \href{https://doi.org/10.24425/agg.2023.146157}{doi: 10.24425/agg.2023.146157} \\
-        		\arrayrulecolor[RGB]{199,220,104}\hline
-	Cameroon & \cite{Lemenkova202024} & \href{https://doi.org/10.47246/CEJGSD.2020.2.2.4}{doi: 10.47246/CEJGSD.2020.2.2.4} \\
-        		\arrayrulecolor[RGB]{216,230,152}\hline
-	Central Africa Republic & \cite{Lemenkova202308} & \href{https://doi.org/10.3390/min13050604}{doi: 10.3390/min13050604} \\
-        		\arrayrulecolor[RGB]{224,235,175}\hline
-	Chad & \cite{Lemenkova202323} & \href{https://doi.org/10.2478/boku-2023-0005}{doi: 10.2478/boku-2023-0005} \\
-        		\arrayrulecolor[RGB]{185,208,139}\hline	
-	D.R.C. Congo & \cite{Lemenkova202229} & \href{https://doi.org/10.3390/app122412554}{doi: 10.3390/app122412554} \\
-		\arrayrulecolor[RGB]{185,208,139}\hline	
-	Egypt & \cite{Lemenkova202306} & \href{https://doi.org/10.3390/info14040249}{doi: 10.3390/info14040249} \\
-        		\arrayrulecolor[RGB]{185,208,139}\hline	
-	\multirow{ 2}{*}{Ethiopia} & \cite{Lemenkova202221,Lemenkova202205} & \href{https://doi.org/10.24425/jwld.2022.141573}{doi: 10.24425/jwld.2022.141573}; \href{https://doi.org/10.5755/j01.erem.78.1.29963}{doi: 10.5755/j01.erem.78.1.29963} \\
-	& \cite{Lemenkova202118,Lemenkova202136} & \href{https://doi.org/10.4314/sinet.v44i1.9}{doi: 10.4314/sinet.v44i1.9}; \href{https://doi.org/10.2478/abmj-2021-0010}{doi: 10.2478/abmj-2021-0010} \\
-        		\arrayrulecolor[RGB]{185,208,139}\hline
-	Ghana & \cite{Lemenkova202211,Lemenkova202140} & \href{https://doi.org/10.24425/gac.2022.141169}{doi: 10.24425/gac.2022.141169}; \href{https://doi.org/10.32909/kg.20.36.2}{doi: 10.32909/kg.20.36.2} \\
-        		\arrayrulecolor[RGB]{185,208,139}\hline
-	Guinea & \cite{Lemenkova202325} & \href{https://doi.org/10.5281/zenodo.10673287}{doi: 10.5281/zenodo.10673287} \\
-        		\arrayrulecolor[RGB]{185,208,139}\hline
-	Ivory Coast (Côte d'Ivoire) & \cite{Lemenkova202227} & \href{https://doi.org/10.3390/jimaging8120317}{doi: 10.3390/jimaging8120317} \\
-        		\arrayrulecolor[RGB]{185,208,139}\hline
-	Kenya & \cite{Lemenkova202315} & \href{https://doi.org/10.2478/trser-2023-0008}{doi: 10.2478/trser-2023-0008} \\
-        		\arrayrulecolor[RGB]{185,208,139}\hline
-	Malawi & \cite{Lemenkova202209,Lemenkova202134} & \href{https://doi.org/10.5937/tehnika2202183L}{doi: 10.5937/tehnika2202183L};  \href{https://doi.org/10.5281/zenodo.5772315}{doi: 10.5281/zenodo.5772315} \\
-        		\arrayrulecolor[RGB]{185,208,139}\hline
-	Mali & \cite{Lemenkova202324} & \href{https://doi.org/10.2478/arsa-2023-0011}{doi: 10.2478/arsa-2023-0011} \\
-        		\arrayrulecolor[RGB]{185,208,139}\hline
-	Mozambique & \cite{Lemenkova202401} & \href{https://doi.org/10.3390/coasts4010008}{doi: 10.3390/coasts4010008} \\
-        		\arrayrulecolor[RGB]{185,208,139}\hline
-	Nigeria & \cite{Lemenkova202307} & \href{https://doi.org/10.3390/jmse11040871}{doi: 10.3390/jmse11040871} \\
-        		\arrayrulecolor[RGB]{185,208,139}\hline
-	Rwanda & \cite{Lemenkova202220} & \href{https://doi.org/10.5281/zenodo.7113414}{doi: 10.5281/zenodo.7113414} \\
-        		\arrayrulecolor[RGB]{185,208,139}\hline
-	Sierra Leone & \cite{Lemenkova202406} & \href{https://doi.org/10.5281/zenodo.11473307}{doi: 10.5281/zenodo.11473307} \\
-        		\arrayrulecolor[RGB]{131,155,92}\hline
-	Somalia and Seychelles & \cite{Lemenkova202230} & \href{https://doi.org/10.2478/jaes-2022-0026}{doi: 10.2478/jaes-2022-0026} \\
-        		\arrayrulecolor[RGB]{185,208,139}\hline
-	South Africa & \cite{Lemenkova202405} & \href{https://journals.openedition.org/physio-geo/17018}{doi: 10.4000/11pyj} \\
-        		\arrayrulecolor[RGB]{131,155,92}\hline
-	South Sudan & \cite{Lemenkova202320} & \href{https://doi.org/10.3390/analytics2030040}{doi: 10.3390/analytics2030040} \\
-        		\arrayrulecolor[RGB]{131,155,92}\hline	
-	Sudan & \cite{Lemenkova202310} & \href{https://doi.org/10.3390/jimaging9050098}{doi: 10.3390/jimaging9050098} \\
-        		\arrayrulecolor[RGB]{131,155,92}\hline
-	Tanzania & \cite{Lemenkova202206} & \href{https://doi.org/10.3176/earth.2022.05}{doi: 10.3176/earth.2022.05} \\
-        		\arrayrulecolor[RGB]{131,155,92}\hline
-	Tunisia & \cite{Lemenkova202322} & \href{https://doi.org/10.3390/land12111995}{doi: 10.3390/land12111995} \\
-        		\arrayrulecolor[RGB]{131,155,92}\hline
-	Uganda & \cite{Lemenkova202122} & \href{https://doi.org/10.5281/zenodo.5082861}{doi: 10.5281/zenodo.5082861} \\
-        		\arrayrulecolor[RGB]{131,155,92}\hline
-	Zambia & \cite{Lemenkova202108} & \href{https://doi.org/10.5937/ZemBilj2101117L}{doi: 10.5937/ZemBilj2101117L} \\
-        		\arrayrulecolor[RGB]{131,155,92}\hline
-\end{tabular}
-\end{table}
 \end{frame}
 
 % ---------------------------------------------------------------------------->
@@ -1432,8 +1461,8 @@ Region of northern Sudan is tectonically active $=>$ Nubian Swell has diverted t
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{Thanks}
-\begin{frame}\frametitle{Thanks}
+\section{Конец}
+\begin{frame}\frametitle{Конец презентации}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.40\textwidth}
@@ -1444,14 +1473,14 @@ Region of northern Sudan is tectonically active $=>$ Nubian Swell has diverted t
 %% and height of the graphic contained in the node.
 \fill[fill = white,fill opacity=0.6] ($(X.south west) + (0,1in)$) rectangle ($(X.north east) - (0,1in)$);%
 \node[text width=8cm] (Z) at (0.5,0.5) {%
-  \sffamily\centering\large \textcolor{NavyBlue}{Thank you for attention !}\par%
+  \sffamily\centering\large \textcolor{NavyBlue}{Спасибо за внимание}\par%
 };
 \end{scope}%
 \end{tikzpicture}
 \end{column}
 \begin{column}{0.15\textwidth}
 \vspace{14.0em}
-\begin{alertblock}{Questions ?}
+\begin{alertblock}{Вопросы ?}
 \end{alertblock}
 \end{column}
 \end{columns}
@@ -1460,8 +1489,8 @@ Region of northern Sudan is tectonically active $=>$ Nubian Swell has diverted t
 
 
 %%%%%%%%%%% Bibliography %%%%%%%
-\section{Bibliography}
-\large{Author's publications}
+\section{Литература}
+\large{Литература}
 \nocite{*}
 \printbibliography
 
