@@ -133,6 +133,33 @@
          %\end{frame}
 
 % ---------------------------------------------------------------------------->
+\section{Часть I}
+\begin{frame}\frametitle{Часть I}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.40\textwidth}
+\begin{tikzpicture}%
+\node[anchor=south west, inner sep=0] (X) at (5,5){\includegraphics[width=8.5cm]{Fig_52.jpg}};%
+\begin{scope}[x={(X.south east)},y={(X.north west)}]%
+%% This makes all measurements with no units into fractions of the width
+%% and height of the graphic contained in the node.
+\fill[fill = white,fill opacity=0.6] ($(X.south west) + (0,1in)$) rectangle ($(X.north east) - (0,1in)$);%
+\node[text width=8cm] (Z) at (0.5,0.5) {%
+  \sffamily\centering\large \textcolor{NavyBlue}{Обоснование}\par%
+};
+\end{scope}%
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.15\textwidth}
+\vspace{14.0em}
+\begin{alertblock}{Данные, методы, задачи, апробация}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
 \section{Введение}
 \begin{frame}\frametitle{Введение}
 
@@ -396,6 +423,62 @@
 \end{frame}
 
 % ---------------------------------------------------------------------------->
+\section{Интеграция данных}
+\begin{frame}\frametitle{Интеграция данных}
+ 
+\begin{alertblock}{Интеграция данных из разных источников}
+ \begin{itemize}\footnotesize
+ \item Анализ данных из открытых источников (Landsat, GEBCO, ETOPO1, геологические данные и т.д.) для географического анализа
+\item Экологическая аналитика: картографирование изменения почвенно-растительного покрова для оценки рисков стихийных бедствий (опустынивание, наводнения) 
+\item Анализ климатических данных и информации ФАО о продовольственной безопасности в различных регионах Африки
+\item Анализ геологических данных USGS: rартографирование геолого-геофизической обстановки в странах Центральной Африки (Восточно-Африканская рифтовая долина: вулканическая активность, сейсмичность)
+    \end{itemize}
+\end{alertblock}
+
+\begin{exampleblock}{Методы скриптов в картографии}
+\begin{itemize}\footnotesize
+        	\item Картографирование на основе GMT обеспечивает точную визуализацию сложного рельефа, например, в африканских странах.
+\end{itemize}
+\end{exampleblock}
+	
+\begin{alertblock}{Решения и преимущества GMT:}\footnotesize
+ \begin{itemize}
+\item Расширенный уровень картографической функциональности: различные проекции, обработка данных, импорт/экспорт и т. д.
+\item Высококачественный картографический вывод: цветовые палитры, макеты, сетки, векторные линии, передовые подходы к дизайну
+\item Гибкость кодирования/скриптов оболочки из консоли (модули GMT)
+\item Встроенный анализ и визуализация данных: картографирование, моделирование, статистический анализ, логические запросы, импорт/экспорт, обработка векторных и растровых данных
+\end{itemize}
+\end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{Часть II}
+\begin{frame}\frametitle{Часть II}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.40\textwidth}
+\begin{tikzpicture}%
+\node[anchor=south west, inner sep=0] (X) at (5,5){\includegraphics[width=8.5cm]{Fig_52.jpg}};%
+\begin{scope}[x={(X.south east)},y={(X.north west)}]%
+%% This makes all measurements with no units into fractions of the width
+%% and height of the graphic contained in the node.
+\fill[fill = white,fill opacity=0.6] ($(X.south west) + (0,1in)$) rectangle ($(X.north east) - (0,1in)$);%
+\node[text width=8cm] (Z) at (0.5,0.5) {%
+  \sffamily\centering\large \textcolor{NavyBlue}{Региональные различия}\par%
+};
+\end{scope}%
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.15\textwidth}
+\vspace{14.0em}
+\begin{alertblock}{Примеры}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
 \section{Примеры}
 \begin{frame}\frametitle{Региональные различия Африки}
 %\vspace{2em}
@@ -524,8 +607,8 @@
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{CM}
-\begin{frame}\frametitle{Cameroon}
+\section{КМ}
+\begin{frame}\frametitle{Камерун}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -533,61 +616,26 @@
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5cm]{Fig_09.jpg}
-	\caption{Topographic map of Camerron}
+	\caption{Топокарта Камеруна}
 \end{figure}
 \end{column}
-
+%
 \begin{column}{0.5\textwidth}
-\vspace{-1em}
-\begin{alertblock}{Cameroon -- Africa in miniature}
-All major climates and vegetation of the continent: 
- \begin{itemize}
-     \item Landscapes: a mixture of \textcolor{blue}{coastal} ecosystems, \textcolor{blue}{desert} plains and \textcolor{blue}{mountains} and \textcolor{blue}{savannah} in the central regions, \textcolor{blue}{tropical rain forests} in the south
-\end{itemize} 
+\vspace{-2em}
+\begin{alertblock}{Камерун -- Африка в миниатюре}
+Разнообразие типов климата и растительности континента; геологическое и соц-культурное (языковое, этническое) разнообразие. Ландшафты: \textcolor{blue}{прибрежные} экосистемы, \textcolor{blue}{пустынные} равнины, \textcolor{blue}{горные массивы}, \textcolor{blue}{саванны} в центральных регионах, \textcolor{blue}{тропические леса} на юге и вдоль атлантического побережья, высокогорные тропические леса -- Камерунское нагорье
 \end{alertblock}
 %
-\begin{alertblock}{Social-environmental problems of Cameron}
- \begin{itemize}
-     \item \textcolor{red}{Population growth}, urbanisation and industrialisation 
-     \item \textcolor{red}{Land degradation}, water / air pollution
-     \item \textcolor{red}{Waste management} (plastic pollution)
-     \item \textcolor{red}{Anglophone crisis}: colonial history of Cameroon (France and UK shared Cameroon unequally -- French area 80\% of the country $=>$ two nations in one country
-\end{itemize} 	
+\begin{alertblock}{Соц.-экологические проблемы Камеруна}
+ \begin{itemize}\small
+     \item \textcolor{red}{Рост населения}, урбанизация и индустриализация
+     \item \textcolor{red}{Деградация земель}, промышленные отходы, загрязнение пластиком
+     \item \textcolor{red}{Соц. (англоязычный) кризис}: колониальная история Камеруна (Франция и Великобритания неравномерное управление Камеруном -- французская территория составляла 80\% территории страны $=>$ две нации в одной стране
+ \end{itemize}
 \end{alertblock}	
 \end{column}
 \end{columns}
 \end{minipage}
-\end{frame}
-
-% ---------------------------------------------------------------------------->
-\section{Data}
-\begin{frame}\frametitle{Data Integration}
- 
-\begin{alertblock}{Mapping central African regions (complex geology)}
-Multi-source data mixing and integration using GMT adjustments:
- \begin{itemize}\footnotesize
-     \item Data mining from open sources (e.g. Landsat, GEBCO, ETOPO1, geological data, etc) for geographic analysis 
-     \item Predictive environmental analytics: forecasting and prognosis in hazard risk assessment based on climate data and FAO information on food security
-     \item Mapping geophysical setting in central African countries, volcanic activity, seismicity, earthquakes
-     \item Data analysis by GMT has potential to advance development of cartography
-     \item It enables scientific discoveries, based on spatial analysis in geology
-\end{itemize}
-\end{alertblock}
-
-\begin{exampleblock}{Scripting techniques in cartography}
-\begin{itemize}\footnotesize
-        	\item GMT-based mapping provides accurate visualization of the complex terrain as in African countries
-\end{itemize}
-\end{exampleblock}
-	
-\begin{alertblock}{Solutions of GMT:}\footnotesize
- \begin{itemize}
-     \item Advanced level of cartographic functionality: variety of projections, data processing, import/export, etc
-     \item High-quality cartographic output: colour palettes, layouts, grids, vector lines, advanced design approaches
-     \item Flexibility of coding / shell scripting from the console
-     \item Embedded data analysis and visualisation: mapping, modelling, statistical analysis, logical queries, import/export, vector and raster processing
-\end{itemize}
-\end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------------->
