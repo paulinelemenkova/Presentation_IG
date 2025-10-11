@@ -244,6 +244,49 @@
 \end{exampleblock} 
 \end{frame}
 
+% ----------------------------------------------------------------------------
+\section{ML}
+
+\begin{frame}\frametitle{Машинное обучение}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+%\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.0cm]{Fig_39.jpg}
+	\caption{Концептуальная схема алгоритмов МО}
+\end{figure}
+\vspace{-2em}
+\begin{alertblock}{МО в картографии и геоинформатике}
+\begin{dinglist}{217}\footnotesize
+	\item Быстрое развитие МО/ГО $=>$ алгоритмов обработки и анализа данных ДЗЗ 
+	\item Использование алгоритмов в качестве правил классификации/обобщения для обучения моделей (в качестве вводных данных)
+	\item МО — это новая, быстро развивающаяся область МО, вкл. алгоритмы компьютерного зрения.
+	\item Алгоритмы: методы искусственных нейронных сетей (ИНС), случайный лес (СЛ), сверточные нейронные сети (СНС), рекуррентные нейронные сети (РНС), опорные векторные машины (ОВМ). 
+\end{dinglist}
+\end{alertblock}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{-0.5em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_40.jpg}
+	\caption{Methodological scheme of ANN}
+\end{figure}
+\vspace{-1em}
+\begin{alertblock}{Возможности МО для обработки спутниковых изображений}
+\begin{dinglist}{217}\footnotesize
+	\item \textcolor{red}{Методы МО} (Python, R, GRASS GIS) могут помочь визуализировать закономерности земного покрова в ландшафтах, используя классификацию данных ДЗЗ.
+	\item \textcolor{red}{Огромный объем данных ДЗЗ} (Sentinel 2, Sentinel 3, Landsat 8 и SkySat, $=>$ >2 петабайт (PB) данных каждый день)
+	\item МО позволяет оперативно обрабатывать этот объем данных и получить \textcolor{red}{информацию о закономерностях земного покрова} (изменчивость, динамика с использованием анализа временных рядов, фрагментация), сформированных в различных экологических условиях в различных экорегионах Африки.
+\end{dinglist}
+\end{alertblock}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
 % ---------------------------------------------------------------------------->
 \begin{frame}[t,allowframebreaks]\frametitle{Апробация: опубликовано 45 печатных работ}
 
@@ -1037,47 +1080,39 @@
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{MW}
-\begin{frame}\frametitle{Malawi}
-\vspace{-1em}
+\section{МВ}
+\begin{frame}\frametitle{Малави}
+%\vspace{1em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.45\textwidth}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig_31.jpg}
-	\caption{Topographic and seismic maps of Malawi (based on IRIS data on deep earthquakes).}
+	\caption{Топографические и сейсмические карты Малави (на основе данных IRIS о глубоких землетрясениях).}
 \end{figure}
 \end{column}
 %
 \begin{column}{0.4\textwidth}	
-%\vspace{-2em}
-\begin{alertblock}{Geographic features of Malawi:}
+\begin{alertblock}{Соц.-экон. и экологические проблемы Малави:}
 \begin{itemize}\footnotesize
-      \item The \textcolor{red}{Great Rift Valley} runs through the country from N to S
-      \item \textcolor{red}{Lake Malawi} --  (a.k.a. Lake Nyasa) - 3/4 of Malawi's eastern boundary; one of the major Rift Valley ancient lakes
-\item \textcolor{red}{Lake Malawi} - unique meromictic lake (layers of water that don't  intermix and don't circulate) with specific hydrology -- permanently stratified water layers
- \item \textcolor{red}{Lake Malawi} - \nth{4} largest freshwater lake in the world by volume, the \nth{9} largest lake in the world by area and the \nth{3} largest and \nth{2} deepest lake in Africa.
-\item \textcolor{red}{Lake Malawi National Park} created to protect unique ecosystems of the lake
-\end{itemize}
-\end{alertblock}
-
-\begin{alertblock}{Problems in Malawi:}
-\begin{itemize}\footnotesize
-      \item \textcolor{red}{Tanzania--Malawi dispute} about the borders of the Malawi Lake
-      \item \textcolor{red}{Deforestation} - serious environmental issue
-      \item \textcolor{red}{Scarcity of natural resources} (landlocked)
-       \item \textcolor{red}{Extreme poverty} and rapidly growing population dependent on resources
+	\item \textcolor{red}{Мвера - ураганные ветра}: экстремальные погодные условия $=>$ затрудненное судоходство и проблемы для экосистем оз. Ньяса.
+	\item \textcolor{red}{Вырубка лесов}, обезлесение, эрозия почв, потеря биоразнообразия,
+	\item \textcolor{red}{Дефицит природных ресурсов} (отсутствие выхода к морю)
+	\item \textcolor{red}{Конфликты между Танзанией и Малави} о спорных границах оз. Малави (Ньяса)
+	\item \textcolor{red}{Экономическая стагнация} и быстрорастущее население, зависящее от ограниченных ресурсов
+	\item \textcolor{red}{Опустынивание, деградация земель}: расширение с/х угодий и вырубка лесов $=>$ сокращение ареалов обитания диких животных и  земель.
+	\item \textcolor{red}{Недостаток инфраструктуры}: неконтролируемая утилизация мусора и переработка отходов $=>$  загрязнение окружающей среды
+	\item \textcolor{red}{Загрязнение воды}: с/х стоки (пестициды и удобрения), сброс бытовых отходов $=>$ загрязнение водоемов и оз. Ньяса
 \end{itemize}
 \end{alertblock}
 \end{column}
 \end{columns}
 \end{minipage}
 \end{frame}
-
 % ---------------------------------------------------------------------------->
-\section{ML}
-\begin{frame}\frametitle{Mali}
+\section{МЛ}
+\begin{frame}\frametitle{Мали}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -1085,7 +1120,7 @@
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6.0cm]{Fig_32.jpg}
-	\caption{Topographic map of Mali plotted using GMT scripts and GEBCO data. The green rotated square shows the location of the Landsat satellite images used for image analysis. These images cover the area of Inner Niger Delta.}
+	\caption{Топографическая карта Мали, составленная с использованием GMT и GEBCO. Указано местоположение снимков Landsat, использованных для анализа изображений: территория Внутренней дельты р. Нигер.}
 \end{figure}
 \end{column}
 \begin{column}{0.5\textwidth}
@@ -1093,7 +1128,7 @@
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_33.jpg}
-	\caption{Scheme of information extraction from RS data to analyse vegetation indices for ecological monitoring of Niger Inner Delta, Mali. For time series analysis, images are collected in various years.}
+	\caption{Схема рабочего процесса: извлечение геоинформации из данных ДЗЗ для анализа индексов растительности в целях экологического мониторинга внутренней дельты р. Нигер, Мали. Для анализа временных рядов используются изображения, собранные в разные годы.}
 \end{figure}
 \end{column}
 \end{columns}
@@ -1101,7 +1136,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\begin{frame}\frametitle{Mali: Inner Niger Delta}
+\begin{frame}\frametitle{Мали: Внутренняя дельта Нигера}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -1109,15 +1144,15 @@
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_34.jpg}
-	\caption{Landsat 8-9 OLI/TIRS images: showing Niger Inner Delta, Mali in natural colours.}
+	\caption{Снимки Landsat 8-9 OLI/TIRS: внутренняя дельта Нигера, Мали, в естественных цветах.}
 \end{figure}
 \vspace{-2em}
-\begin{alertblock}{Image processing by R}
+\begin{alertblock}{Обработка изображений с помощью R}
 \begin{itemize}\footnotesize
-      \item Analysing land cover types by R-based satellite image processing $=>$ \textcolor{red}{visualising heterogeneity} of landscape features formed under various environmental setting: 
-      \item Example of data analysis by R: computing vegetation indices in Mali; clustering for image classification.
-      \item Data analysis in R is based on a full range of algorithms used in RS data processing.
-\end{itemize} 
+\item Анализ типов почвенно-растительного покрова с помощью обработки спутниковых изображений на основе R $=>$ \textcolor{red}{визуализация неоднородности} объектов ландшафтов, сформированных в различных экологических условиях:
+\item Пример анализа данных в R: вычисление индексов растительности в Мали; кластеризация для классификации изображений.
+\item Анализ данных в R основан на полном наборе алгоритмов, используемых при обработке данных ДЗЗ.
+\end{itemize}
 \end{alertblock}
 \end{column}
 %
@@ -1126,7 +1161,7 @@
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=4.5cm]{Fig_35.jpg}
-	\caption{Unsupervised classification by k-means clustering: Inner Niger Delta}
+	\caption{Классификация ДЗЗ с использованием k-средних: внутренняя дельта р. Нигер}
 \end{figure}
 \end{column}
 \end{columns}
@@ -1134,9 +1169,9 @@
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{MZ}
+\section{МЗ}
 
-\begin{frame}\frametitle{Mozambique}
+\begin{frame}\frametitle{Мозамбик}
 
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -1145,15 +1180,15 @@
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6.0cm]{Fig_36.jpg}
-	\caption{Workflow used for RS data classification using Random Forest (RF) in GRASS GIS: A case of Mozambique}
+	\caption{Рабочий процесс, используемый для классификации данных ДЗ с использованием случайного леса (RF) в GRASS GIS:  Мозамбик}
 \end{figure}
 \vspace{-2em}
-\begin{alertblock}{Environmental problems in Mozambique}
+\begin{alertblock}{Экологические проблемы в Мозамбике}
 \begin{itemize}\footnotesize
-	\item \textcolor{red}{Deforestation} \& loss of natural habitats; disrupted coastal ecosystems, land cover change, land degradation
-	\item \textcolor{red}{Mangroves} and wetlands are being lost and converted into rice farms, aquaculture and housing
-	\item \textcolor{red}{Climate change} and high population growth
-	\item \textcolor{red}{Destructive fishing} practices (e.g. use of dynamite \& fine mesh nets) $=>$ declining fish stocks; 
+\item \textcolor{red}{Вырубка лесов} и потеря естественной среды обитания; нарушение прибрежных экосистем, изменение почвенного покрова, деградация земель.
+\item \textcolor{red}{Мангровые леса} и водно-болотные угодья сокращаются в площади за счет разрастания рисовых плантаций, объектов аквакультур и строительства.
+\item \textcolor{red}{Изменение климата} и быстрый рост населения.
+\item \textcolor{red}{Разрушительные методы рыболовства} (например, использование динамита и мелкоячеистых сетей) приводят к сокращению рыбных популяций.
 \end{itemize}
 \end{alertblock}
 \end{column}
@@ -1162,58 +1197,15 @@
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.5cm]{Fig_37.jpg}
-	\caption{RS data classification using Random Forest in GRASS GIS}
+	\caption{Классификация данных ДЗЗ с использованием случайного леса в GRASS GIS}
 \end{figure}
 \vspace{-2em}
-\begin{alertblock}{Climate setting in Mozambique}
+\begin{alertblock}{Климатические условия в Мозамбике}
 \begin{itemize}\footnotesize
-      \item Tropical climate with two seasons: wet (Oct-Mar) and dry (Apr-Sep); $=>$ responses of vegetation. 
-\item Climatic conditions vary with altitude. 
-\item Rainfall is heavy along the coast and decreases in the north and south of Mozambique.
+	\item Тропический климат с двумя сезонами: влажным (октябрь–март) и сухим (апрель–сентябрь); $=>$ адаптированные типы растительности
+	\item Обильные осадки выпадают вдоль побережья и уменьшаются на севере и юге.
+	\item Высотная зональность растительности в зависимости от высотных условий (топография, рельеф), уровня влажности и осадков
 \end{itemize}
-\end{alertblock}
-\end{column}
-\end{columns}
-\end{minipage}
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\section{ML}
-
-\begin{frame}\frametitle{Deep Learning / Machine Learning}
-\begin{minipage}[0.4\textheight]{\textwidth}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-%\vspace{2em}
-\begin{figure}[H]
-	\centering
-		\includegraphics[width=4.0cm]{Fig_39.jpg}
-	\caption{Conceptual scheme of ML/DL algorithms}
-\end{figure}
-\vspace{-2em}
-\begin{alertblock}{ML in cartography and geoinformatics}
-\begin{dinglist}{217}\footnotesize
-     \item Rapid development of ML/DL $=>$ Cartographic knowledge encoding with algorithms of data handling 
-     \item Using cartographic patterns as classification/generalisation
-rules for learning models (as seed) for processing RS data
-     \item DL is a new, rapidly evolving field of ML and consists in advanced algorithms of computer vision and analysis. 
-\item ML algorithms include, among others, methods of Artificial Neural Networks (ANN), Random Forest (RF), Convolution Neural Networks (CNN) and Recurrent Neural Networks (RNN), Support Vector Machines (SVM)
-\end{dinglist}
-\end{alertblock}
-\end{column}
-\begin{column}{0.5\textwidth}
-\vspace{2em}
-\begin{figure}[H]
-	\centering
-		\includegraphics[width=6.0cm]{Fig_40.jpg}
-	\caption{Methodological scheme of ANN}
-\end{figure}
-\begin{alertblock}{ML opportunities for satellite image processing}
-\begin{dinglist}{217}\footnotesize
-     \item \textcolor{red}{ML techniques} (Python, R, GRASS GIS) can help visualise land cover patterns in landscapes using classification of RS data
-     \item Land cover types of the diverse landscapes are inherently linked with regional topographic, geologic and climate setting
-     \item ML enables to get \textcolor{red}{insights into land cover patterns} (variability, dynamics using time series analysis, fragmentation) formed in various environmental conditions in diverse ecoregions of Africa
-\end{dinglist}
 \end{alertblock}
 \end{column}
 \end{columns}
