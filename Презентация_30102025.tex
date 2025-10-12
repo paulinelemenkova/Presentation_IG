@@ -172,7 +172,7 @@
 \end{column}
 \begin{column}{0.15\textwidth}
 \vspace{14.0em}
-\begin{alertblock}{Данные, методы, задачи, апробация}
+\begin{alertblock}{Проблема, цели, задачи, данные, методы, решения, апробация}
 \end{alertblock}
 \end{column}
 \end{columns}
@@ -1450,6 +1450,33 @@
 		\includegraphics[width=4.5cm]{Zambia.jpg}
 	\caption{Прорыв дамбы (50 М л кислоты). Аэрофотоснимок}
 \end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{Часть III}
+\begin{frame}\frametitle{Часть III}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.40\textwidth}
+\begin{tikzpicture}%
+\node[anchor=south west, inner sep=0] (X) at (5,5){\includegraphics[width=8.5cm]{Fig_52.jpg}};%
+\begin{scope}[x={(X.south east)},y={(X.north west)}]%
+%% This makes all measurements with no units into fractions of the width
+%% and height of the graphic contained in the node.
+\fill[fill = white,fill opacity=0.6] ($(X.south west) + (0,1in)$) rectangle ($(X.north east) - (0,1in)$);%
+\node[text width=8cm] (Z) at (0.5,0.5) {%
+  \sffamily\centering\large \textcolor{NavyBlue}{Заключение}\par%
+};
+\end{scope}%
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.15\textwidth}
+\vspace{14.0em}
+\begin{alertblock}{Выводы, краткое изложение, обсуждение}
+\end{alertblock}
 \end{column}
 \end{columns}
 \end{minipage}
