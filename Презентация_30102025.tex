@@ -110,6 +110,10 @@
   }
 }
 
+\setbeamertemplate{footline}[text line]{%
+  \parbox{\linewidth}{\vspace*{-8pt}Институт Географии РАН\hfill\insertshortauthor\hfill\insertpagenumber}}
+\setbeamertemplate{navigation symbols}{}
+
 \addbibresource{Africa_Present.bib}
 \renewcommand*{\bibfont}{\scriptsize} %\footnotesize
 
@@ -175,7 +179,7 @@
 \begin{column}{0.55\textwidth}
 \vspace{2em}
 \begin{itemize}
-        	\item \textcolor{red}{Гегорафическая специфика}: масштаб (2-й по площади материк после Евразии), контрастные климатические зоны; континент, протянувшийся от северного субтропического климатического пояса до южного субтропического $=>$ воздействие на почвенно-растительный покров
+        	\item \textcolor{red}{Географическая специфика}: масштаб (2-й по площади материк после Евразии), контрастные климатические зоны; континент, протянувшийся от северного субтропического климатического пояса до южного субтропического $=>$ воздействие на почвенно-растительный покров
 	\item \textcolor{red}{Экологические проблемы Африки:}
 		\begin{itemize}\small
 			\item \textcolor{ProcessBlue}{Опустынивание (север)}
@@ -188,11 +192,11 @@
 	\item \textcolor{red}{Картографические задачи}: Разработка методов автоматизированного дешифрирования данных ДЗЗ для обработки большого объема спутниковых снимков
 \end{itemize}	
 \end{column}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.6\textwidth}
 \vspace{2ex}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=5.5cm]{Fig_02.jpg}
+		\includegraphics[width=6.5cm]{Fig_02.jpg}
 \end{figure}
 \end{column}
 \end{columns}
@@ -215,7 +219,7 @@
 
 % ---------------------------------------------------------------------------->
 \begin{frame}\frametitle{Цели и задачи диссертации}
- 
+\vspace{-1em}
 \begin{alertblock}{Разработка автоматизированных методов обработки данных ДЗЗ для комплексного экологического картографирования Африки}
 \begin{itemize}
 	\item \textcolor{red}{Экологический анализ}: Анализ изменений в почвенно-растительном покрове ландшафтов посредством автоматизированной обработки данных ДЗЗ
@@ -278,7 +282,7 @@
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6.0cm]{Fig_40.jpg}
-	\caption{Methodological scheme of ANN}
+	\caption{Концептуальная схема работы ИНС}
 \end{figure}
 \vspace{-1em}
 \begin{alertblock}{Возможности МО для обработки спутниковых изображений}
@@ -442,19 +446,18 @@
 		\includegraphics[width=5.0cm]{Fig_38.jpg}
 	\caption{Использование GMT в качестве интегрированного инструмента для оптимизации и контроля рабочего процесса}
 \end{figure}
-\vspace{-1em}
+\vspace{0em}
 \end{column}
-\begin{column}{0.5\textwidth}
-\begin{itemize}\footnotesize
-	\item Использованные модули GMT для автоматизированного картирования.
+\begin{column}{0.6\textwidth}
+\footnotesize{Использованные модули GMT для автоматизированного картографирования}
 	\begin{dinglist}{224}\footnotesize
 		\item  \textcolor{SlateBlue}{gmt psxy} для построения графиков и добавления аннотаций на карту
 		\item  \textcolor{SlateBlue}{gmt makecpt} для создания цветовой палитры
 		\item  \textcolor{SlateBlue}{gmt grdimage} для создания растрового изображения
-		\item  \textcolor{SlateBlue}{gmt psscale} для добавления легенды для добавления масштаба
+		\item  \textcolor{SlateBlue}{gmt psscale} для добавления легенды и масштаба
 		\item  \textcolor{SlateBlue}{gmt grdcontour} для добавления изолиний
-		\item  \textcolor{SlateBlue}{gmt psbasemap} для добавления сетки и необходимых картографических элементов
-		\item  \textcolor{SlateBlue}{gmt psbasemap} для добавления масштаба и розы ветров
+		\item  \textcolor{SlateBlue}{gmt psbasemap} для сетки и элементов карты
+		\item  \textcolor{SlateBlue}{gmt psbasemap} для добавления розы ветров
 		\item  \textcolor{SlateBlue}{echo} Утилита UNIX для добавления текстовых меток
 		\item  \textcolor{SlateBlue}{gmt pstext} для добавления подзаголовков
 		\item  \textcolor{SlateBlue}{gmt logo} для добавления логотипа
@@ -462,10 +465,9 @@
 		\item  \textcolor{SlateBlue}{gmt legend} добавление легенды на карты с картографическими аннотациями
 		\item  \textcolor{SlateBlue}{gmt pshistogram} для статистического анализа распределения топографических данных
 		\item  \textcolor{SlateBlue}{gmt psrose} для построения диаграмм роз
-		\item  \textcolor{SlateBlue}{gmt img2grd} преобразование геопространственных форматов
+		\item  \textcolor{SlateBlue}{gmt img2grd} преобразование форматов
 		\item  \textcolor{SlateBlue}{gmt grdcut} выбор исследуемой области или региона из общей мелкомасштабной карты
 	 \end{dinglist}
-\end{itemize}
 \end{column}
 \end{columns}
 \end{minipage}
@@ -492,10 +494,10 @@
 	
 \begin{alertblock}{Решения и преимущества GMT:}\footnotesize
  \begin{itemize}
-\item Расширенный уровень картографической функциональности: различные проекции, обработка данных, импорт/экспорт и т. д.
-\item Высококачественный картографический вывод: цветовые палитры, макеты, сетки, векторные линии, передовые подходы к дизайну
-\item Гибкость кодирования/скриптов оболочки из консоли (модули GMT)
-\item Встроенный анализ и визуализация данных: картографирование, моделирование, статистический анализ, логические запросы, импорт/экспорт, обработка векторных и растровых данных
+\item Расширенный уровень картографического функционала: проекции, обработка векторных и растровых данных, импорт/экспорт
+\item Визуализация: цветовые палитры, макеты, сетки, векторные линии, дизайн
+\item Гибкость синтаксиса скриптов оболочки из консоли (модули GMT)
+\item Анализ данных: моделирование, статистика, логические запросы
 \end{itemize}
 \end{alertblock}
 \end{frame}
@@ -530,7 +532,7 @@
 % ---------------------------------------------------------------------------->
 \section{Примеры}
 \begin{frame}\frametitle{Региональные различия Африки}
-%\vspace{2em}
+\vspace{-1em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=7.0cm]{Fig_01.jpg}
@@ -546,8 +548,8 @@
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
-\vspace{2em}
-\begin{itemize}
+\vspace{1em}
+\begin{itemize}\small
      \item Алжир — крупнейшая страна Африки и Средиземноморского бассейна.
      \item Разнообразие ландшафтов: от гор Атласа (север), и побережья Средиземного моря до Сахары, занимающей около 80\% территории. 
      	\begin{itemize}
@@ -652,7 +654,7 @@
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=7.0cm]{Fig_08.jpg}
+		\includegraphics[width=6.0cm]{Fig_08.jpg}
 	\caption{Данные из репозитория EarthExplorer USGS: спутниковый снимок Landsat-8 OLI/TIRS, центральная часть Буркина-Фасо, Уагадугу. Фоновое изображение: ESRI World}\label{fig:MAT5}
 \end{figure}
 \end{frame}
@@ -791,10 +793,7 @@
 \end{column}
 \end{columns}
 \end{minipage}
-%\end{frame}
 
-% ---------------------------------------------------------------------------->
-%\begin{frame}\frametitle{Конго ДРК}
 \vspace{2em}
 \begin{minipage}[0.45\textheight]{\textwidth}
 \begin{columns}[T]
@@ -833,22 +832,24 @@
 \end{figure}
 \vspace{-1em}
 \begin{itemize}\footnotesize
-     \item Скрипты GMT для 3D-моделирования (геоморфология), для сравнения геологических, топографическими условий, и изменения почвенно-растительного покрова.
-     \item Методы сопоставления карт на основе данных и автоматизированной технологии (скрипты)
+     \item Скрипты GMT для 3D-моделирования для сравнения изменения почвенно-растительного покрова в зависимости от геологических условий и рельефа 
+     \item Методы сопоставления карт на основе данных и скрипты для автоматизированного картографирования
 \end{itemize}
 \end{column}
 \begin{column}{0.6\textwidth}
+\vspace{-0.5em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6.0cm]{Fig_20.jpg}
+		\includegraphics[width=5.5cm]{Fig_20.jpg}
 	\caption{3D-перспективный вид на излучину Кена, река Нил, Верхний Египет}
 \end{figure}
 \vspace{-1em}
 \begin{itemize}\footnotesize 
 	\item Излучина Кена — особенность геоморфологии южного Египта: петля р. Нил, ориентированная на восток.
+	\item Геодинамические факторы формирования излучины Кена до сих пор до конца не изучены.
 	\item Излучина Кена — один из самых сложных в структурном отношении регионов долины Нила. С обеих сторон она ограничена известняковыми скалами.
 	\item Излучина Кена пересекается с востока с несколькими тектоническими структурами: Вади Кена и зоной сдвига Кена-Сафага.
-	\item Геодинамические факторы формирования излучины Кена до сих пор до конца не изучены.
+	
 \end{itemize}
 \end{column}
 \end{columns}
@@ -860,25 +861,25 @@
 
 \begin{frame}\frametitle{Эфиопия}
 %\vspace{2em}
-\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{minipage}[0.5\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.50\textwidth}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig_21.jpg}
-	\caption{Геоморфологические параметны: карта уклонов, экспозиций, ЦМР и рельефа, составленная с R}
+	\caption{Геоморфологические параметры по R: карта уклонов, экспозиций, ЦМР и рельефа}
 \end{figure}
 \vspace{-2em}
-\begin{alertblock}{Основные экологические проблемы Эфиопии}
+\begin{alertblock}{Основные экологические проблемы}
 \begin{itemize}\footnotesize
      \item Деградация земель, эрозия почв, опустынивание и обезлесение, 
-     \item Интенсивное землепользование и эксплуатация ресурсов, климатические изменения. 
-     \item Повторяющиеся засухи и наводнения, потеря биоразнообразия, загрязнения воды и воздуха
+     \item Интенсивное землепользование и эксплуатация ресурсов, загрязнение вод и воздуха
+     \item Засухи, потеря биоразнообразия
 \end{itemize}
 \end{alertblock}		
 \end{column}
 
-\begin{column}{0.45\textwidth}
+\begin{column}{0.5\textwidth}
 \begin{alertblock}{Геолого-географические особенности}
 \begin{itemize}\footnotesize
     \item Большая часть Эфиопии расположена на Африканском Роге — самой восточной точке африканского континента.
@@ -898,13 +899,13 @@
 % ---------------------------------------------------------------------------->
 \section{ГН}
 \begin{frame}\frametitle{Гана}
-\vspace{-0.8em}
+\vspace{-0.5em}
 \begin{minipage}[0.9\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.9\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=10cm]{Fig_22.jpg}
+		\includegraphics[width=9cm]{Fig_22.jpg}
 	\caption{Тематические карты Ганы, составленные с использованием GMT}
 \end{figure}
 \vspace{-3.5em}
@@ -912,10 +913,10 @@
 \begin{itemize}\footnotesize
 	\item 5 наземных экорегионов Ганы: \textcolor{red}{Леса Восточной Гвинеи, мозаика лесов и саванн Гвинеи, саванна Западного Судана, мангровые леса Центральной Африки} и \textcolor{red}{мангровые леса Гвинеи}.
 	\item Доминантные типы: гвинейская лесосаванна на юге, западносуданская саванна и нигерские переходные леса на севере  
-	\item \textcolor{red}{Экологические проблемы}: высокий уровень загрязнение воздуха и воды (промышленность), ненадлежащее управление отходами, вырубка лесов и эрозия почвы
-	\item Причины загрязнений: добыча полезных ископаемых, промышленные, сельскохозяйственные стоки и бытовые отходы
-	 \item Р. Белая Вольта и приток Чёрная Вольта, впадающие в оз. Вольта — 3-й по объёму и самый большой по площади водоём в мире,
-	\item ГЭС Акосомбо — крупный производитель электроэнергии.
+	\item \textcolor{red}{Экология (проблемы)}: вырубка лесов и эрозия почв, высокий уровень загрязнение воздуха и воды, ненадлежащее управление отходами, 
+	\item \textcolor{red}{Причины загрязнений}: добыча полезных ископаемых, промышленные и сельскохозяйственные стоки, бытовые отходы
+	 \item Р. Белая Вольта и приток Чёрная Вольта, впадающие в оз. Вольта -- 3-й по объёму и самый большой по площади водоём в мире,
+	\item ГЭС Акосомбо -- крупный производитель электроэнергии.
 \end{itemize}
 \end{alertblock}
 \end{column}
@@ -930,7 +931,7 @@
 
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\vspace{-0.7em}
+\vspace{-0.5em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=4cm]{Fig_23.jpg}
@@ -946,17 +947,17 @@
 \end{alertblock}
 \end{column}
 \begin{column}{0.55\textwidth}
-\vspace{1em}
+\vspace{-0.5em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig_24.jpg}
 	\caption{Типы ландшафтов Гвинеи}
 \end{figure}
-\vspace{-2em}
+\vspace{-1em}
 \begin{alertblock}{Экологические особенности Гвинеи:}
 \begin{itemize}\small
 	\item Влажные тропические леса - юг страны (высокое биоразнообразие), густая речная сеть
-	\item Сухие саванны (СВ регион, сухой сезон - от 5 до 7 месяцев). ЮВ: Природный заповедник «Нимба» (г.Нимба) -- охраняемая территория и объект Всемирного наследия ЮНЕСКО.
+	\item Сухие саванны (СВ регион, сухой сезон - от 5 до 7 месяцев). ЮВ: Природный заповедник Нимба (г.Нимба) -- объект Всемирного наследия ЮНЕСКО.
 	\item \textcolor{red}{5 экорегионов}: \emph{горные леса, низинные леса Западной Гвинеи, лесосаванна (мозаика лесов, саванн и пастбищ), саванна и прибрежные мангровые болота}.
  \end{itemize}
 \end{alertblock}
@@ -971,7 +972,7 @@
 %\vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
-\begin{column}{0.5\textwidth}
+\begin{column}{0.6\textwidth}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig_26.jpg}
@@ -1024,7 +1025,7 @@
 \small{Тектоника: активная континентальная рифтовая зона в Восточной Африке, действующие и спящие вулканы (вкл. стратовулкан Килиманджаро)}
 \end{alertblock}
 \end{column}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.6\textwidth}
 \vspace{-0.5em}
 \begin{figure}[H]
 	\centering
@@ -1032,7 +1033,6 @@
 	\caption{Геологическая карта Кении. Источник:}\label{fig:VV9}
 \end{figure}
 \vspace{-1.5em}
-Данные ДЗЗ из нескольких источников
 \begin{itemize}\small
 	\item \textcolor{red}{Анализ} геологических данных для уточнения топографической структуры, которая влияет на распределение почвенно-растительного покрова и формирование ландшафтов на разных формах рельефа.
 	\item Интегрированные данные: топографические и геологические карты, климат (TerraClimate), извлечение информации из ДЗЗ (снимки Landsat) для анализа почвенно-растительный покрова.
@@ -1058,7 +1058,7 @@
 \vspace{-15pt}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=4.5cm]{Fig_30.jpg}
+		\includegraphics[width=4.0cm]{Fig_30.jpg}
 	\caption{3D-картография Танзании}
 \end{figure}
 \end{column}
@@ -1091,9 +1091,9 @@
 \section{МВ}
 \begin{frame}\frametitle{Малави}
 %\vspace{1em}
-\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{minipage}[0.5\textheight]{\textwidth}
 \begin{columns}[T]
-\begin{column}{0.45\textwidth}
+\begin{column}{0.5\textwidth}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig_31.jpg}
@@ -1101,7 +1101,7 @@
 \end{figure}
 \end{column}
 %
-\begin{column}{0.4\textwidth}	
+\begin{column}{0.5\textwidth}	
 \begin{alertblock}{Соц.-экон. и экологические проблемы Малави:}
 \begin{itemize}\footnotesize
 	\item \textcolor{red}{Мвера - ураганные ветра}: экстремальные погодные условия $=>$ затрудненное судоходство и проблемы для экосистем оз. Ньяса.
@@ -1147,7 +1147,7 @@
 \begin{frame}\frametitle{Мали: Внутренняя дельта Нигера}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
-\begin{column}{0.5\textwidth}
+\begin{column}{0.6\textwidth}
 %\vspace{-2em}
 \begin{figure}[H]
 	\centering
@@ -1164,7 +1164,7 @@
 \end{alertblock}
 \end{column}
 %
-\begin{column}{0.5\textwidth}
+\begin{column}{0.4\textwidth}
 %\vspace{-2em}
 \begin{figure}[H]
 	\centering
@@ -1183,7 +1183,7 @@
 
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
-\begin{column}{0.5\textwidth}
+\begin{column}{0.55\textwidth}
 %\vspace{2em}
 \begin{figure}[H]
 	\centering
@@ -1191,16 +1191,15 @@
 	\caption{Рабочий процесс, используемый для классификации данных ДЗ с использованием случайного леса (RF) в GRASS GIS:  Мозамбик}
 \end{figure}
 \vspace{-2em}
-\begin{alertblock}{Экологические проблемы в Мозамбике}
+\begin{alertblock}{Экологические проблемы}
 \begin{itemize}\footnotesize
-\item \textcolor{red}{Вырубка лесов} и потеря естественной среды обитания; нарушение прибрежных экосистем, изменение почвенного покрова, деградация земель.
-\item \textcolor{red}{Мангровые леса} и водно-болотные угодья сокращаются в площади за счет разрастания рисовых плантаций, объектов аквакультур и строительства.
-\item \textcolor{red}{Изменение климата} и быстрый рост населения.
-\item \textcolor{red}{Разрушительные методы рыболовства} (например, использование динамита и мелкоячеистых сетей) приводят к сокращению рыбных популяций.
+\item \textcolor{red}{Вырубка лесов}; нарушение прибрежных экосистем, изменение почвенного покрова, деградация земель.
+\item \textcolor{red}{Мангровые леса} сокращаются за счет плантаций риса, объектов аквакультур и строительства, рост населения.
+\item \textcolor{red}{Разрушительные методы рыболовства} (использование динамита и мелкоячеистых сетей) $=>$ сокращение рыбных популяций.
 \end{itemize}
 \end{alertblock}
 \end{column}
-\begin{column}{0.45\textwidth}
+\begin{column}{0.5\textwidth}
 %\vspace{2em}
 \begin{figure}[H]
 	\centering
@@ -1208,11 +1207,11 @@
 	\caption{Классификация данных ДЗЗ с использованием случайного леса в GRASS GIS}
 \end{figure}
 \vspace{-2em}
-\begin{alertblock}{Климатические условия в Мозамбике}
+\begin{alertblock}{Климатические условия}
 \begin{itemize}\footnotesize
 	\item Тропический климат с двумя сезонами: влажным (октябрь–март) и сухим (апрель–сентябрь); $=>$ адаптированные типы растительности
 	\item Обильные осадки выпадают вдоль побережья и уменьшаются на севере и юге.
-	\item Высотная зональность растительности в зависимости от высотных условий (топография, рельеф), уровня влажности и осадков
+	\item Высотная зональность растительности (топография, рельеф, уровень влажности и осадков)
 \end{itemize}
 \end{alertblock}
 \end{column}
@@ -1224,17 +1223,17 @@
 \section{НГ}
 
 \begin{frame}[t,allowframebreaks]\frametitle{Нигерия}
-\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{minipage}[0.5\textheight]{\textwidth}
 \begin{columns}[T]
-\begin{column}{0.6\textwidth}
+\begin{column}{0.5\textwidth}
 %\vspace{2em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=7.0cm]{Fig_41.jpg}
+		\includegraphics[width=6.0cm]{Fig_41.jpg}
 	\caption{Топографическая карта Нигерии с обозначенной областью исследования (регион южного побережья Нигерии с мангровыми зарослями как водными растениями)}
 \end{figure}
 \end{column}
-\begin{column}{0.4\textwidth}
+\begin{column}{0.5\textwidth}
 \vspace{-0.8em}
 \begin{alertblock}{Экологические проблемы в Нигерии}
 \begin{itemize}\footnotesize
